@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataSource" Class="dcACELDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SQL5054.site4now.net;Persist Security Info=True;User ID=DB_A3FA0B_sysall_admin" SettingsObjectName="ACEL.ENT.Properties.Settings" SettingsPropertyName="DataSourceConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.HW_BRANCH" Member="HW_BRANCH">
+    <Type Name="HW_BRANCH">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NomComercial" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Referencia" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="HW_BRANCH_HW_BRANCH_CUENTA" Member="HW_BRANCH_CUENTA" ThisKey="idBranch" OtherKey="idBranch" Type="HW_BRANCH_CUENTA" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HW_BRANCH_CUENTA" Member="HW_BRANCH_CUENTA">
+    <Type Name="HW_BRANCH_CUENTA">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NomComercial" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TipoCuenta" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Encargado" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_PANTALLAS" Member="ACEL_CUENTA_PANTALLAS" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="ACEL_CUENTA_PANTALLAS" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_USUARIOS1" Member="ACEL_CUENTA_USUARIOS1" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="ACEL_CUENTA_USUARIOS1" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_EVENTOS" Member="ACEL_CUENTA_EVENTOS" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="ACEL_CUENTA_EVENTOS" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_INDICES" Member="ACEL_CUENTA_INDICES" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="ACEL_CUENTA_INDICES" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_INVERSIONISTAS" Member="ACEL_CUENTA_INVERSIONISTAS" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="ACEL_CUENTA_INVERSIONISTAS" />
+      <Association Name="HW_BRANCH_HW_BRANCH_CUENTA" Member="HW_BRANCH" ThisKey="idBranch" OtherKey="idBranch" Type="HW_BRANCH" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_PANTALLAS" Member="ACEL_CUENTA_PANTALLAS">
+    <Type Name="ACEL_CUENTA_PANTALLAS">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPantalla" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="Modulo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="StatusPantalla" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Link" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="Icono" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_PANTALLAS_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" Member="ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" ThisKey="idBranch,idCuenta,idPantalla" OtherKey="idBranch,idCuenta,idPantalla" Type="ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_PANTALLAS" Member="HW_BRANCH_CUENTA" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="HW_BRANCH_CUENTA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" Member="ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO">
+    <Type Name="ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPantalla" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idUsuario" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StatusAcceso" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_PANTALLAS_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" Member="ACEL_CUENTA_PANTALLAS" ThisKey="idBranch,idCuenta,idPantalla" OtherKey="idBranch,idCuenta,idPantalla" Type="ACEL_CUENTA_PANTALLAS" IsForeignKey="true" />
+      <Association Name="ACEL_CUENTA_USUARIOS1_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" Member="ACEL_CUENTA_USUARIOS1" ThisKey="idBranch,idCuenta,idUsuario" OtherKey="idBranch,idCuenta,idUsuario" Type="ACEL_CUENTA_USUARIOS1" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_USUARIOS1" Member="ACEL_CUENTA_USUARIOS1">
+    <Type Name="ACEL_CUENTA_USUARIOS1">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idUsuario" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Apellidos" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NomComercial" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TipoUsuario" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Correo" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Telefono" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Puesto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="NivelAcceso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cve" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Pass" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumInternoSirscom" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ImagenUsuario" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ImagenFirma" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="PassCorreo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaNacimiento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_USUARIOS1_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" Member="ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" ThisKey="idBranch,idCuenta,idUsuario" OtherKey="idBranch,idCuenta,idUsuario" Type="ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_USUARIOS1" Member="HW_BRANCH_CUENTA" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="HW_BRANCH_CUENTA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_EVENTOS" Member="ACEL_CUENTA_EVENTOS">
+    <Type Name="ACEL_CUENTA_EVENTOS">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEvento" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="NombreEvento" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="StatusEvento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(18)" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(18)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="FechaEvento" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TipoEvento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoCliente" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoInversionista" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_EVENTOS_ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" Member="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" ThisKey="idBranch,idCuenta,idEvento" OtherKey="idBranch,idCuenta,idEvento" Type="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" />
+      <Association Name="ACEL_CUENTA_EVENTOS_ACEL_CUENTA_INVERSIONISTAS" Member="ACEL_CUENTA_INVERSIONISTAS" ThisKey="idBranch,idCuenta,idEvento" OtherKey="idBranch,idCuenta,idEvento" Type="ACEL_CUENTA_INVERSIONISTAS" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_EVENTOS" Member="HW_BRANCH_CUENTA" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="HW_BRANCH_CUENTA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_INDICES" Member="ACEL_CUENTA_INDICES">
+    <Type Name="ACEL_CUENTA_INDICES">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idIndice" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idDetalle" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="ValorAsociado" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="Modulo" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_INDICES" Member="HW_BRANCH_CUENTA" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="HW_BRANCH_CUENTA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" Member="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS">
+    <Type Name="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEvento" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idEscala" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TipoEscala" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ValorNominal" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Aticipo" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="EngancheLiquidacion" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="Mensualidad" Type="System.Decimal" DbType="Decimal(12,4)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TipoInversionista" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS_ACEL_CUENTA_INVERSIONISTAS" Member="ACEL_CUENTA_INVERSIONISTAS" ThisKey="idBranch,idCuenta,idEvento,idEscala" OtherKey="idBranch,idCuenta,idEvento,idEscala" Type="ACEL_CUENTA_INVERSIONISTAS" />
+      <Association Name="ACEL_CUENTA_EVENTOS_ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" Member="ACEL_CUENTA_EVENTOS" ThisKey="idBranch,idCuenta,idEvento" OtherKey="idBranch,idCuenta,idEvento" Type="ACEL_CUENTA_EVENTOS" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_INVERSIONISTAS" Member="ACEL_CUENTA_INVERSIONISTAS">
+    <Type Name="ACEL_CUENTA_INVERSIONISTAS">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idInversionista" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CveInversionista" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ApellidoPat" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="ApellidoMat" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="NomComercial" Type="System.String" DbType="VarChar(300)" CanBeNull="true" />
+      <Column Name="RazonSocial" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="TipoInversionista" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Contacto" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="TelContacto" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CorreoContacto" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Imagen" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cliente" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usuario" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Pass" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CondicionesPago" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NumMensualidades" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="TipoMoneda" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="RFC" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="CantidadCertificados" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="NombreEvento" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="idEvento" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="idEscala" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_INVERSIONISTAS_ACEL_CUENTA_INVERSIONISTAS_PAGOS" Member="ACEL_CUENTA_INVERSIONISTAS_PAGOS" ThisKey="idBranch,idCuenta,idInversionista" OtherKey="idBranch,idCuenta,idInversionista" Type="ACEL_CUENTA_INVERSIONISTAS_PAGOS" />
+      <Association Name="HW_BRANCH_CUENTA_ACEL_CUENTA_INVERSIONISTAS" Member="HW_BRANCH_CUENTA" ThisKey="idBranch,idCuenta" OtherKey="idBranch,idCuenta" Type="HW_BRANCH_CUENTA" IsForeignKey="true" />
+      <Association Name="ACEL_CUENTA_EVENTOS_ACEL_CUENTA_INVERSIONISTAS" Member="ACEL_CUENTA_EVENTOS" ThisKey="idBranch,idCuenta,idEvento" OtherKey="idBranch,idCuenta,idEvento" Type="ACEL_CUENTA_EVENTOS" IsForeignKey="true" />
+      <Association Name="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS_ACEL_CUENTA_INVERSIONISTAS" Member="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" ThisKey="idBranch,idCuenta,idEvento,idEscala" OtherKey="idBranch,idCuenta,idEvento,idEscala" Type="ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ACEL_CUENTA_INVERSIONISTAS_PAGOS" Member="ACEL_CUENTA_INVERSIONISTAS_PAGOS">
+    <Type Name="ACEL_CUENTA_INVERSIONISTAS_PAGOS">
+      <Column Name="idBranch" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idCuenta" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idInversionista" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="idPago" Type="System.Int64" DbType="BigInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CveInversionista" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MontoPago" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="FechaPago" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ViaDeposito" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ReferenciaPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TipoPago" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="Descripcion" Type="System.String" DbType="VarChar(400)" CanBeNull="true" />
+      <Column Name="FechaAlta" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuAlta" Type="System.String" DbType="VarChar(18)" CanBeNull="true" />
+      <Column Name="FechaMod" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UsuMod" Type="System.String" DbType="VarChar(18)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="ACEL_CUENTA_INVERSIONISTAS_ACEL_CUENTA_INVERSIONISTAS_PAGOS" Member="ACEL_CUENTA_INVERSIONISTAS" ThisKey="idBranch,idCuenta,idInversionista" OtherKey="idBranch,idCuenta,idInversionista" Type="ACEL_CUENTA_INVERSIONISTAS" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.sp_ACEL_CUENTA_PANTALLAS" Method="sp_ACEL_CUENTA_PANTALLAS">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idPantalla" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(300)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(400)" />
+    <Parameter Name="Modulo" Parameter="modulo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="StatusPantalla" Parameter="statusPantalla" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Link" Parameter="link" Type="System.String" DbType="VarChar(400)" />
+    <Parameter Name="Icono" Parameter="icono" Type="System.String" DbType="VarChar(400)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" Method="sp_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idPantalla" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idUsuario" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="StatusAcceso" Parameter="statusAcceso" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.sp_ACEL_CUENTA_USUARIOS1" Method="sp_ACEL_CUENTA_USUARIOS1">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idUsuario" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="Nombre" Parameter="nombre" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Apellidos" Parameter="apellidos" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="NomComercial" Parameter="nomComercial" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="TipoUsuario" Parameter="tipoUsuario" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Correo" Parameter="correo" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Telefono" Parameter="telefono" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Puesto" Parameter="puesto" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="NivelAcceso" Parameter="nivelAcceso" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Cve" Parameter="cve" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Pass" Parameter="pass" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumInternoSirscom" Parameter="numInternoSirscom" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="ImagenUsuario" Parameter="imagenUsuario" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ImagenFirma" Parameter="imagenFirma" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="PassCorreo" Parameter="passCorreo" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaNacimiento" Parameter="fechaNacimiento" Type="System.DateTime" DbType="Date" />
+    <ElementType Name="sp_ACEL_CUENTA_USUARIOS1Result">
+      <Column Name="" Member="Column1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ACEL_CUENTA_EVENTOS" Method="sp_ACEL_CUENTA_EVENTOS">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idEvento" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="NombreEvento" Parameter="nombreEvento" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(400)" />
+    <Parameter Name="StatusEvento" Parameter="statusEvento" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(18)" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(18)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="FechaEvento" Parameter="fechaEvento" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="TipoEvento" Parameter="tipoEvento" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoCliente" Parameter="tipoCliente" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoInversionista" Parameter="tipoInversionista" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="sp_ACEL_CUENTA_EVENTOSResult">
+      <Column Name="" Member="Column1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" Method="sp_ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idEvento" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idEscala" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="TipoEscala" Parameter="tipoEscala" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoPago" Parameter="tipoPago" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ValorNominal" Parameter="valorNominal" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="Aticipo" Parameter="aticipo" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="EngancheLiquidacion" Parameter="engancheLiquidacion" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="Mensualidad" Parameter="mensualidad" Type="System.Decimal" DbType="Decimal(12,4)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TipoInversionista" Parameter="tipoInversionista" Type="System.String" DbType="VarChar(100)" />
+    <ElementType Name="sp_ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOSResult">
+      <Column Name="" Member="Column1" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ACEL_CUENTA_INVERSIONISTAS" Method="sp_ACEL_CUENTA_INVERSIONISTAS">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idInversionista" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="CveInversionista" Parameter="cveInversionista" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ApellidoPat" Parameter="apellidoPat" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="ApellidoMat" Parameter="apellidoMat" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="NomComercial" Parameter="nomComercial" Type="System.String" DbType="VarChar(300)" />
+    <Parameter Name="RazonSocial" Parameter="razonSocial" Type="System.String" DbType="VarChar(400)" />
+    <Parameter Name="TipoInversionista" Parameter="tipoInversionista" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Contacto" Parameter="contacto" Type="System.String" DbType="VarChar(200)" />
+    <Parameter Name="TelContacto" Parameter="telContacto" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CorreoContacto" Parameter="correoContacto" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Imagen" Parameter="imagen" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Cliente" Parameter="cliente" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="Usuario" Parameter="usuario" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Pass" Parameter="pass" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(10)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CondicionesPago" Parameter="condicionesPago" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NumMensualidades" Parameter="numMensualidades" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="TipoMoneda" Parameter="tipoMoneda" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="RFC" Parameter="rFC" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="CantidadCertificados" Parameter="cantidadCertificados" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="NombreEvento" Parameter="nombreEvento" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="idEvento" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idEscala" Type="System.Int64" DbType="BigInt" />
+    <ElementType Name="sp_ACEL_CUENTA_INVERSIONISTASResult">
+      <Column Name="idInversionista" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.sp_ACEL_CUENTA_INVERSIONISTAS_PAGOS" Method="sp_ACEL_CUENTA_INVERSIONISTAS_PAGOS">
+    <Parameter Name="Operacion" Parameter="operacion" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idBranch" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idCuenta" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idInversionista" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="idPago" Type="System.Int64" DbType="BigInt" />
+    <Parameter Name="CveInversionista" Parameter="cveInversionista" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="MontoPago" Parameter="montoPago" Type="System.Decimal" DbType="Decimal(18,2)" />
+    <Parameter Name="FechaPago" Parameter="fechaPago" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ViaDeposito" Parameter="viaDeposito" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="ReferenciaPago" Parameter="referenciaPago" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="TipoPago" Parameter="tipoPago" Type="System.String" DbType="VarChar(100)" />
+    <Parameter Name="Descripcion" Parameter="descripcion" Type="System.String" DbType="VarChar(400)" />
+    <Parameter Name="FechaAlta" Parameter="fechaAlta" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuAlta" Parameter="usuAlta" Type="System.String" DbType="VarChar(18)" />
+    <Parameter Name="FechaMod" Parameter="fechaMod" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UsuMod" Parameter="usuMod" Type="System.String" DbType="VarChar(18)" />
+    <Parameter Name="Status" Parameter="status" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="sp_ACEL_CUENTA_INVERSIONISTAS_PAGOSResult">
+      <Column Name="idPago" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </ElementType>
+  </Function>
+</Database>

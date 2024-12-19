@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dcACEL">
+  <DataContextMoniker Name="/dcACELDataContext" />
+  <nestedChildShapes>
+    <classShape Id="374008b4-3548-4a7a-b85e-f45f8c67be51" isExpanded="false" absoluteBounds="3.875, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/HW_BRANCH" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67d69e71-d23d-45fc-b9db-38542fb75012" absoluteBounds="3.89, 0.96, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" isExpanded="false" absoluteBounds="3.875, 1.25, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/HW_BRANCH_CUENTA" />
+      <nestedChildShapes>
+        <elementListCompartment Id="44083566-408f-4b4f-922f-b148f7e7628c" absoluteBounds="3.89, 1.71, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.875 : 0.95); (4.875 : 1.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dcACELDataContext/HW_BRANCH/HW_BRANCH_HW_BRANCH_CUENTA" />
+      <nodes>
+        <classShapeMoniker Id="374008b4-3548-4a7a-b85e-f45f8c67be51" />
+        <classShapeMoniker Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="3bf3ef59-4660-4a79-923c-b01c8bab8774" isExpanded="false" absoluteBounds="0.5, 1.375, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_PANTALLAS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="71d5fb9b-570c-495e-906e-bc904552aeee" absoluteBounds="0.51499999999999968, 1.835, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a2531573-114f-49c4-a0b2-0f31ee3960ea" isExpanded="false" absoluteBounds="0.5, 2.875, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" />
+      <nestedChildShapes>
+        <elementListCompartment Id="48c9777d-24dc-4bc6-8c63-b471cdadaa60" absoluteBounds="0.51500000000000057, 3.3350000000000009, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="03dcac6a-c22a-4f51-979d-a73d6124d87b" isExpanded="false" absoluteBounds="0.5, 2.25, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_USUARIOS1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a7951d59-ca35-4b87-937b-51e45d05c4f6" absoluteBounds="0.51499999999999968, 2.7100000000000009, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.875 : 1.5375); (2.5 : 1.5375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/HW_BRANCH_CUENTA/HW_BRANCH_CUENTA_ACEL_CUENTA_PANTALLAS" />
+      <nodes>
+        <classShapeMoniker Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" />
+        <classShapeMoniker Id="3bf3ef59-4660-4a79-923c-b01c8bab8774" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.5 : 1.825); (2.875 : 2.2); (2.875 : 2.5); (2.5 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dcACELDataContext/ACEL_CUENTA_PANTALLAS/ACEL_CUENTA_PANTALLAS_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" />
+      <nodes>
+        <classShapeMoniker Id="3bf3ef59-4660-4a79-923c-b01c8bab8774" />
+        <classShapeMoniker Id="a2531573-114f-49c4-a0b2-0f31ee3960ea" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.4687475 : 2.7); (1.4687475 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/ACEL_CUENTA_USUARIOS1/ACEL_CUENTA_USUARIOS1_ACEL_CUENTA_PANTALLAS_ACCESOS_USUARIO" />
+      <nodes>
+        <classShapeMoniker Id="03dcac6a-c22a-4f51-979d-a73d6124d87b" />
+        <classShapeMoniker Id="a2531573-114f-49c4-a0b2-0f31ee3960ea" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.875 : 1.7); (3.5 : 2.075); (3.125 : 2.075); (3.125 : 1.625); (2.77142556509888 : 1.97857443490112 : JumpStart); (2.65357443490112 : 2.09642556509888 : JumpEnd); (2.5 : 2.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dcACELDataContext/HW_BRANCH_CUENTA/HW_BRANCH_CUENTA_ACEL_CUENTA_USUARIOS1" />
+      <nodes>
+        <classShapeMoniker Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" />
+        <classShapeMoniker Id="03dcac6a-c22a-4f51-979d-a73d6124d87b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7efca477-3d84-4e71-a850-5123627d53a4" isExpanded="false" absoluteBounds="3.875, 2.25, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_EVENTOS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f15b3657-172b-4eca-9d8d-d2b53870551d" absoluteBounds="3.8899999999999997, 2.71, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.9062525 : 1.7); (4.9062525 : 2.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/HW_BRANCH_CUENTA/HW_BRANCH_CUENTA_ACEL_CUENTA_EVENTOS" />
+      <nodes>
+        <classShapeMoniker Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" />
+        <classShapeMoniker Id="7efca477-3d84-4e71-a850-5123627d53a4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8d5f47ec-393e-4715-a491-bcddf7e75f65" isExpanded="false" absoluteBounds="0.625, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_INDICES" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4b95920f-3d55-4dcb-9097-ac49fa3114a3" absoluteBounds="0.63999999999999968, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.875 : 1.28125); (2.59375 : 1.28125); (2.59375 : 0.95)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/HW_BRANCH_CUENTA/HW_BRANCH_CUENTA_ACEL_CUENTA_INDICES" />
+      <nodes>
+        <classShapeMoniker Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" />
+        <classShapeMoniker Id="8d5f47ec-393e-4715-a491-bcddf7e75f65" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a5fc083c-eb33-4202-9d38-4447f5b52778" isExpanded="false" absoluteBounds="3.875, 3, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3da9fbc4-df03-4270-837a-41fd4ac6cee3" absoluteBounds="3.8899999999999997, 3.46, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.9062525 : 2.7); (4.9062525 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/ACEL_CUENTA_EVENTOS/ACEL_CUENTA_EVENTOS_ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS" />
+      <nodes>
+        <classShapeMoniker Id="7efca477-3d84-4e71-a850-5123627d53a4" />
+        <classShapeMoniker Id="a5fc083c-eb33-4202-9d38-4447f5b52778" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6343b98d-e7ee-4a40-8728-e544c0d0f3d3" isExpanded="false" absoluteBounds="6.5, 2.25, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_INVERSIONISTAS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="42299345-6e5b-4603-9294-d676de91793c" absoluteBounds="6.515, 2.71, 1.9700000000000002, 5.826131184895833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fcd4dbcd-8933-40fc-88a2-fd82283bbd27" isExpanded="false" absoluteBounds="6.5, 3.25, 2, 0.45">
+      <DataClassMoniker Name="/dcACELDataContext/ACEL_CUENTA_INVERSIONISTAS_PAGOS" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cfbca57e-583c-4f78-bf07-0a7eb35554e5" absoluteBounds="6.5150000000000006, 3.7100000000000009, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.875 : 1.7); (6.5 : 2.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dcACELDataContext/HW_BRANCH_CUENTA/HW_BRANCH_CUENTA_ACEL_CUENTA_INVERSIONISTAS" />
+      <nodes>
+        <classShapeMoniker Id="4f1595f7-40b9-4f30-8809-c7aa6568034f" />
+        <classShapeMoniker Id="6343b98d-e7ee-4a40-8728-e544c0d0f3d3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.875 : 2.5062525); (6.5 : 2.5062525)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/ACEL_CUENTA_EVENTOS/ACEL_CUENTA_EVENTOS_ACEL_CUENTA_INVERSIONISTAS" />
+      <nodes>
+        <classShapeMoniker Id="7efca477-3d84-4e71-a850-5123627d53a4" />
+        <classShapeMoniker Id="6343b98d-e7ee-4a40-8728-e544c0d0f3d3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.875 : 3); (6.5 : 2.7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/dcACELDataContext/ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS/ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS_ACEL_CUENTA_INVERSIONISTAS" />
+      <nodes>
+        <classShapeMoniker Id="a5fc083c-eb33-4202-9d38-4447f5b52778" />
+        <classShapeMoniker Id="6343b98d-e7ee-4a40-8728-e544c0d0f3d3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.5312525 : 2.7); (7.5312525 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dcACELDataContext/ACEL_CUENTA_INVERSIONISTAS/ACEL_CUENTA_INVERSIONISTAS_ACEL_CUENTA_INVERSIONISTAS_PAGOS" />
+      <nodes>
+        <classShapeMoniker Id="6343b98d-e7ee-4a40-8728-e544c0d0f3d3" />
+        <classShapeMoniker Id="fcd4dbcd-8933-40fc-88a2-fd82283bbd27" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

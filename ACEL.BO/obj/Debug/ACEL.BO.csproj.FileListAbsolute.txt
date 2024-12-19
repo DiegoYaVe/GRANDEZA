@@ -1,0 +1,24 @@
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.BO.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.BO.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.DAL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.ENT.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.DAL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.ENT.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\bin\Debug\ACEL.ENT.dll.config
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\obj\Debug\ACEL.BO.csproj.AssemblyReference.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\obj\Debug\ACEL.BO.csproj.CoreCompileInputs.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\obj\Debug\ACEL.BO.csproj.CopyComplete
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\obj\Debug\ACEL.BO.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.BO\obj\Debug\ACEL.BO.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\obj\Debug\ACEL.BO.csproj.AssemblyReference.cache
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\obj\Debug\ACEL.BO.csproj.CoreCompileInputs.cache
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\obj\Debug\ACEL.BO.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\obj\Debug\ACEL.BO.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.BO.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.BO.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.DAL.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.ENT.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.DAL.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.ENT.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\bin\Debug\ACEL.ENT.dll.config
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.BO\obj\Debug\ACEL.BO.csproj.Up2Date

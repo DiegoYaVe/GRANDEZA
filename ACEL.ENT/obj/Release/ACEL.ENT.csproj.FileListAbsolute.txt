@@ -1,0 +1,7 @@
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\bin\Release\ACEL.ENT.dll.config
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\bin\Release\ACEL.ENT.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\bin\Release\ACEL.ENT.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\obj\Release\ACEL.ENT.csproj.AssemblyReference.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\obj\Release\ACEL.ENT.csproj.CoreCompileInputs.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\obj\Release\ACEL.ENT.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.ENT\obj\Release\ACEL.ENT.pdb

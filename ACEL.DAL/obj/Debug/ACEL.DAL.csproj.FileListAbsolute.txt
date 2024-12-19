@@ -1,0 +1,20 @@
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\bin\Debug\ACEL.DAL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\bin\Debug\ACEL.DAL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\bin\Debug\ACEL.ENT.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\bin\Debug\ACEL.ENT.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\bin\Debug\ACEL.ENT.dll.config
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.csproj.AssemblyReference.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.csproj.CoreCompileInputs.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.csproj.CopyComplete
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\bin\Debug\ACEL.DAL.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\bin\Debug\ACEL.DAL.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\bin\Debug\ACEL.ENT.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\bin\Debug\ACEL.ENT.pdb
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\bin\Debug\ACEL.ENT.dll.config
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.csproj.AssemblyReference.cache
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.csproj.CoreCompileInputs.cache
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.csproj.Up2Date
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.dll
+C:\Users\diego\OneDrive\Documentos\HW CONSULTING\NEW\ACEL\ACEL.DAL\obj\Debug\ACEL.DAL.pdb
