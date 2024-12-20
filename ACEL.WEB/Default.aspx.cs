@@ -198,5 +198,35 @@ namespace ACEL.WEB
             FormsAuthentication.RedirectToLoginPage();
             return;
         }
+
+        protected void btnRealizarPagosStripe_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Aquí coloca la lógica para realizar los pagos
+                MuestraMensaje("Pago realizado con éxito.");
+            }
+            catch (Exception ex)
+            {
+                MuestraMensaje("Error al realizar el pago: " + ex.Message);
+            }
+        }
+
+        protected void btnRealizarPagosBajio_Click(object sender, EventArgs e)
+        {
+            MuestraMensaje("Pago realizado con éxito.");
+
+            try
+            {
+                // Aquí coloca la lógica para realizar los pagos
+                MuestraMensaje("Pago realizado con éxito.");
+            }
+            catch (Exception ex)
+            {
+                MuestraMensaje("Error al realizar el pago: " + ex.Message);
+            }
+        }
+
+
     }
 }

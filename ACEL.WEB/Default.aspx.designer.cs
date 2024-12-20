@@ -51,6 +51,15 @@ namespace ACEL.WEB
         protected global::System.Web.UI.WebControls.Literal ltrPuestoUsuario;
 
         /// <summary>
+        /// Control btnRealizarPagosStripe.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRealizarPagosStripe;
+
+        /// <summary>
         /// Control ltrTotalPagos.
         /// </summary>
         /// <remarks>
@@ -76,5 +85,14 @@ namespace ACEL.WEB
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptPagosSTRIPE;
+
+        /// <summary>
+        /// Control Repeater1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater Repeater1;
     }
 }
