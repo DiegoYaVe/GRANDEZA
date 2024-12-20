@@ -14,7 +14,7 @@ using ACEL.BO.bo;
 
 namespace ACEL.WEB
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class Default : System.Web.UI.Page//Diego Prueba Merge
     {
         private DataTable dtUsuario;
         public DataTable dtUsuario_VS
