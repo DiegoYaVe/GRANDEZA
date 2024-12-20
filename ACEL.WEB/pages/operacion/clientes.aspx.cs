@@ -14,7 +14,7 @@ using ACEL.BO.bo;
 
 namespace ACEL.WEB.pages.operacion
 {
-    public partial class clientes : System.Web.UI.Page
+    public partial class clientes : System.Web.UI.Page//cambio 1
     {
         #region --> Atributos <--------------------------
         private DataTable dtUsuario;
