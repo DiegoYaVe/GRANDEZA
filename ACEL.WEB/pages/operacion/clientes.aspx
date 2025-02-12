@@ -19,10 +19,13 @@
     <!-- End plugin css for this page -->
     <!-- inject:css -->
     <!-- endinject -->
+      
     <!-- Layout styles -->
     <link rel="stylesheet" href="../../assets/css/vertical-light/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="../../assets/images/logo_mini2.png" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="js/operacion.js"></script>
   </head>
   <body class="sidebar-fixed">
       <form runat="server">
@@ -489,19 +492,19 @@
                                             </ol>
                                         </nav>
                                     </div>
-                                    <asp:Panel ID="panConsulta" runat="server" CssClass="row">
+                                    <asp:Panel ID="panConsulta" runat="server" CssClass="row" style="display: block;">
                                         <asp:HiddenField ID="hfidRegistro" runat="server" Value="0" />
+                                        <asp:HiddenField ID="HiddenFieldData" runat="server" />
                                         <div class="sort-panel d-flex align-items-ceter mb-4">
                                             <p class="my-2">Filtrar Por:</p>
                                             <label class="d-flex justify-content-start mb-0">
-                                                <select id="sortingField" class="form-select form-select-sm me-2 ms-2">
-                                                    <option>Fecha evento</option>
-                                                    <option>Nombre</option>
-                                                    <option>Tipo Evento</option>
-                                                    <option>Status</option>
+                                                <select id="sortingField" class="form-select">
+                                                    <option value="">Todos</option>
+                                                    <option value="F11">Evento F11</option>
+                                                    <option value="F10">Evento F10</option>
                                                 </select>
                                             </label>
-                                            <button type="button" id="sort" class="btn btn-info btn-sm">Filtrar</button>
+                                            <button type="button" id="btnFiltrar" class="btn btn-info btn-sm">Filtrar</button>
                                         </div>
                                         <div class="table-responsive">
                                             <table class="table">
@@ -516,10 +519,10 @@
                                                         <th>Status</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="tablaInversionistas">
                                                     <asp:Repeater ID="rptConfiguraciones" runat="server" OnItemCommand="rptConfiguraciones_ItemCommand">
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("id") %>' />
+                                                            
                                                             <tr>
                                                                 <td>
                                                                     <div class="badge badge-outline-success">
@@ -541,6 +544,7 @@
                                                                     </div>
                                                                 </td>
                                                             </tr>
+                                                            <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("id") %>' />
                                                         </ItemTemplate>
                                                     </asp:Repeater>
                                                 </tbody>
@@ -548,7 +552,7 @@
                                             </table>
                                         </div>
                                     </asp:Panel>
-                                    <asp:Panel CssClass="row" runat="server" ID="panDatos" Visible="true">
+                                    <asp:Panel CssClass="row" runat="server" ID="panDatos" style="display: none;">
                                         <div class="col-12 grid-margin">
                                             <div class="card">
                                                 <div class="card-body">
@@ -681,8 +685,7 @@
                                                                             <div class="float-end">
                                                                                 <p class="mb-0 text-right">Total Certificados</p>
                                                                                 <div class="fluid-container">
-                                                                                    <h3 class="font-weight-medium text-right mb-0">
-                                                                                        $<asp:Literal ID="ltrTotal" runat="server"></asp:Literal> </h3>
+                                                                                    <h3 id="lblTotalCertificados">$0</h3>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -700,8 +703,7 @@
                                                                             <div class="float-end">
                                                                                 <p class="mb-0 text-right">Anticipo</p>
                                                                                 <div class="fluid-container">
-                                                                                    <h3 class="font-weight-medium text-right mb-0">
-                                                                                        $<asp:Literal ID="ltrAnticipo" runat="server"></asp:Literal></h3>
+                                                                                    <h3 id="lblAnticipo">$0</h3>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -718,8 +720,7 @@
                                                                             <div class="float-end">
                                                                                 <p class="mb-0 text-right">Enganche/Liquidación</p>
                                                                                 <div class="fluid-container">
-                                                                                    <h3 class="font-weight-medium text-right mb-0">
-                                                                                        $<asp:Literal ID="ltrEnganche" runat="server"></asp:Literal> </h3>
+                                                                                    <h3 id="lblEnganche">$0</h3>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -736,8 +737,7 @@
                                                                             <div class="float-end">
                                                                                 <p class="mb-0 text-right">Pagos</p>
                                                                                 <div class="fluid-container">
-                                                                                    <h5 class="font-weight-medium text-right mb-0">
-                                                                                        <asp:Literal ID="ltrPagos" runat="server"></asp:Literal> </h5>
+                                                                                    <h5 id="lblPagos">0 pagos programados</h5>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -747,7 +747,7 @@
                                                             <div class="card" style="margin-top:-80px;">
                                                                     <div class="card-body">
                                                                         <h4 class="card-title">Pagos</h4>
-                                                                        <table class="table table-hover">
+                                                                        <table class="table table-hover" id="tablaPagos">
                                                                             <thead>
                                                                                 <tr>
                                                                                     <th>Descripción</th>

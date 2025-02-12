@@ -757,7 +757,7 @@
                                                                             </div>
                                                                             <div class="tab-pane fade" id='<%# "pills-39_" + Eval("idDetalle") %>' role="tabpanel" aria-labelledby="pills-profile-tab">
                                                                                 <div class="row">
-                                                                                    <h4>De 10 a 39 Certificados Pago a meses</h4>
+                                                                                    <h4>De 11 a 39 Certificados Pago a meses</h4>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -809,7 +809,7 @@
                                                                                 </div>
                                                                                 <br />
                                                                                 <div class="row">
-                                                                                    <h4>De 10 a 39 Certificados Pago contado</h4>
+                                                                                    <h4>De 11 a 39 Certificados Pago contado</h4>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -839,7 +839,7 @@
                                                                             </div>
                                                                             <div class="tab-pane fade" id='<%# "pills-40_" + Eval("idDetalle") %>' role="tabpanel" aria-labelledby="pills-contact-tab">
                                                                                 <div class="row">
-                                                                                    <h4>41 a 99 Certificados Pago a meses</h4>
+                                                                                    <h4>40 Certificados Pago a meses</h4>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -891,7 +891,7 @@
                                                                                 </div>
                                                                                 <br />
                                                                                 <div class="row">
-                                                                                    <h4>41 a 99 Certificados Pago contado</h4>
+                                                                                    <h4>40 Certificados Pago contado</h4>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -920,7 +920,7 @@
                                                                             </div>
                                                                             <div class="tab-pane fade" id='<%# "pills-99_" + Eval("idDetalle") %>' role="tabpanel" aria-labelledby="pills-contact-tab">
                                                                                 <div class="row">
-                                                                                    <h4>40 Certificados Pago a meses</h4>
+                                                                                    <h4>41 a 99 Certificados Pago a meses</h4>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">
@@ -972,7 +972,7 @@
                                                                                 </div>
                                                                                 <br />
                                                                                 <div class="row">
-                                                                                    <h4>40 Certificados Pago contado</h4>
+                                                                                    <h4>41 a 99 Certificados Pago contado</h4>
                                                                                 </div>
                                                                                 <div class="row">
                                                                                     <div class="col-md-6">

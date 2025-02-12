@@ -204,6 +204,28 @@ namespace ACEL.BO.bo
             return elACEL_RG;
         }
 
+        public ACEL_CUENTA_INVERSIONISTAS BuscarCve(long pidBranch, long pidCuenta, string pNombre)
+        {
+            ACEL_CUENTA_INVERSIONISTAS elACEL_RG = new ACEL_CUENTA_INVERSIONISTAS();
+            if (TestConnection())
+            {
+                try
+                {
+                    elACEL_RG = (from spc in dcACEL.ACEL_CUENTA_INVERSIONISTAS
+                                 where spc.Status == "ACTIVO"
+                                 && spc.idBranch == pidBranch
+                                 && spc.idCuenta == pidCuenta
+                                 && spc.CveInversionista.ToUpper().Contains(pNombre.ToUpper())
+                                 select spc).FirstOrDefault();
+                }
+                catch
+                {
+                    elACEL_RG = null;
+                }
+            }
+            return elACEL_RG;
+        }
+
         public ACEL_CUENTA_INVERSIONISTAS BuscarNombreCorreo(long pidBranch, long pidCuenta, string pNombre, string pCorreo)
         {
             ACEL_CUENTA_INVERSIONISTAS elACEL_RG = new ACEL_CUENTA_INVERSIONISTAS();

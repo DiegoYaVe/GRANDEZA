@@ -1213,7 +1213,7 @@ namespace ACEL.WEB.pages.operacion
             if (!string.IsNullOrEmpty(excelFilePath))
             {
                 DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
-                FileInfo fileInfo = new FileInfo(@"C:\Users\YUGEN\Desktop\LAYOUT_PagosGrandeza092024.xlsx");
+                FileInfo fileInfo = new FileInfo(excelFilePath);
 
                 // Establece el contexto de la licencia antes de procesar el archivo
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // Para uso no comercial

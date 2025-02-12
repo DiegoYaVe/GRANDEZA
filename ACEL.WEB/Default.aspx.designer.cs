@@ -15,6 +15,15 @@ namespace ACEL.WEB
     {
 
         /// <summary>
+        /// Control ScriptManager1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
+
+        /// <summary>
         /// Control ltrNombre1.
         /// </summary>
         /// <remarks>
@@ -57,7 +66,16 @@ namespace ACEL.WEB
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRealizarPagosStripe;
+        protected global::System.Web.UI.WebControls.ImageButton btnRealizarPagosStripe;
+
+        /// <summary>
+        /// Control ltrMonto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrMonto;
 
         /// <summary>
         /// Control ltrTotalPagos.
@@ -69,6 +87,42 @@ namespace ACEL.WEB
         protected global::System.Web.UI.WebControls.Literal ltrTotalPagos;
 
         /// <summary>
+        /// Control btnAplicarSTRIPE.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAplicarSTRIPE;
+
+        /// <summary>
+        /// Control btnProcesarExcel.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnProcesarExcel;
+
+        /// <summary>
+        /// Control afuExcelFile.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AsyncFileUpload afuExcelFile;
+
+        /// <summary>
+        /// Control ltrMontoBajio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltrMontoBajio;
+
+        /// <summary>
         /// Control ltrBajio.
         /// </summary>
         /// <remarks>
@@ -76,6 +130,15 @@ namespace ACEL.WEB
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal ltrBajio;
+
+        /// <summary>
+        /// Control btnAplicarBAJIO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAplicarBAJIO;
 
         /// <summary>
         /// Control rptPagosSTRIPE.
@@ -87,12 +150,12 @@ namespace ACEL.WEB
         protected global::System.Web.UI.WebControls.Repeater rptPagosSTRIPE;
 
         /// <summary>
-        /// Control Repeater1.
+        /// Control rptBajio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Repeater rptBajio;
     }
 }

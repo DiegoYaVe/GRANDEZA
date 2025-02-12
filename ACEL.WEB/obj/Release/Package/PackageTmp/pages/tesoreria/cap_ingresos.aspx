@@ -25,6 +25,7 @@
     <link rel="shortcut icon" href="../../assets/images/favicon.png" />
 
     <script src="js/tesoreria.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="css/tesoreria.css" rel="stylesheet" />
     
   </head>
@@ -500,140 +501,36 @@
                                     <div class="page-header">
                                         <h5 class="card-title">
                                             <asp:Literal ID="ltrPantallaSecundaria"
-                                                runat="server">Ingresos</asp:Literal></h5>
-                                        <nav aria-label="breadcrumb">
-                                            <ol class="breadcrumb">
-                                                <li class="">
-                                                    <asp:Button ID="btnConsulta" runat="server" Text="Regresar"
-                                                        CssClass="btn btn-info btn-fw" OnClick="btnConsulta_Click" />
-                                                </li>
-                                                <li class="">
-                                                    <asp:Button ID="btnAlta" runat="server" Text="Alta"
-                                                        CssClass="btn btn-info btn-fw" OnClick="btnAlta_Click" />
-                                                </li>
-                                            </ol>
-                                        </nav>
+                                                runat="server">Asignación manual de pagos a inversionistas</asp:Literal></h5>
                                     </div>
-                                    <asp:Panel ID="panConsulta" runat="server" CssClass="row">
-                                        <asp:HiddenField ID="hfidRegistro" runat="server" Value="0" />
-                                        <div class="sort-panel d-flex align-items-ceter mb-4">
-                                            <p class="my-2">Filtrar Por:</p>
-                                            <label class="d-flex justify-content-start mb-0">
-                                                <select id="sortingField" class="form-select form-select-sm me-2 ms-2">
-                                                    <option>Fecha evento</option>
-                                                    <option>Nombre</option>
-                                                    <option>Tipo Evento</option>
-                                                    <option>Status</option>
-                                                </select>
-                                            </label>
-                                            <button type="button" id="sort" class="btn btn-info btn-sm">Filtrar</button>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Pagos</th>
-                                                        <th>Nombre</th>
-                                                        <th>Tipo Cliente</th>
-                                                        <th>Correo</th>
-                                                        <th>Evento</th>
-                                                        <th>Certificados</th>
-                                                        <th>Status</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <asp:Repeater ID="rptConfiguraciones" runat="server" OnItemDataBound="rptConfiguraciones_ItemDataBound">
-                                                        <ItemTemplate>
-                                                            <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("id") %>' />
-                                                            <tr>
-                                                                <td>
-                                                                    <div class="badge badge-outline-success">
-                                                                        <asp:LinkButton ID="lnkVer" runat="server" 
-                                                                            OnClientClick='<%# "toggleDetails(" +  Eval("id") + "); return false;" %>'
-                                                                            CommandName="ver">Pagos</asp:LinkButton>
-                                                                    </div>
-                                                                </td>
-                                                                <!-- Define un ancho máximo y permite saltos de línea -->
-                                                                <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
-                                                                    <span style="justify-content: left;"><%# Eval("NomComercial") %></span>
-                                                                </td>
-                                                                <td><%# Eval("TipoCliente") %></td>
-                                                                <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
-                                                                    <%# Eval("Correo") %></td>
-                                                                <td><%# Eval("Evento") %></td>
-                                                                <td><%# Eval("Certificados") %></td>
-                                                                <td>
-                                                                    <div class="badge badge-outline-success">
-                                                                        <%# Eval("Status") %>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr id="details-<%# Eval("id") %>" style="display: none;">
-                                                                <td colspan="7">
-                                                                    <div class="partidas-container">
-                                                                        <table class="table">
-                                                                            <thead>
-                                                                                <tr>
-                                                                                    <th style="text-align: center;">Medio Pago</th>
-                                                                                    <th style="text-align: center;">Monto</th>
-                                                                                    <th style="text-align: center;">Fecha</th>
-                                                                                    <th style="text-align: center;">Evento</th>
-                                                                                    <th style="text-align: center;">Mes Pago</th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <asp:Repeater ID="rptPartidas" runat="server">
-                                                                                    <ItemTemplate>
-                                                                                        <asp:HiddenField ID="hfidPago" runat="server" Value='<%# Eval("idPago") %>' />
-                                                                                        <asp:HiddenField ID="hfidCliente" runat="server" Value='<%# Eval("idCliente") %>' />
-                                                                                        <tr>
-                                                                                            <td>
-                                                                                                <span class="descripcion-column"><%# Eval("MetodoPago") %></span>
-                                                                                            </td>
-                                                                                            <td style="text-align: center;"><%# Eval("MontoPago") %></td>
-                                                                                            <td style="text-align: center;"><%# Eval("FechaPago") %></td>
-                                                                                            
-                                                                                            <td style="text-align: center;"><%# Eval("Evento") %></td>
-                                                                                            <td>
-                                                                                                <div class="badge badge-outline-success">
-                                                                                                    <%# Eval("ReferenciaPago") %>
-                                                                                                </div>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                    </ItemTemplate>
-                                                                                </asp:Repeater>
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </ItemTemplate>
-                                                    </asp:Repeater>
-                                                </tbody>
-
-                                            </table>
-                                        </div>
-                                    </asp:Panel>
                                     <asp:Panel CssClass="row" runat="server" ID="panDatos" Visible="true">
                                         <div class="col-12 grid-margin">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <h4 class="card-title">Captura de Ingresos</h4>
                                                     <div class="form-sample">
                                                         <div class="row">
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-12">
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label">Nombre Comercial</label>
-                                                                    <div class="col-sm-9">
-                                                                        <asp:TextBox runat="server" ID="txtNom" CssClass="form-control form-control-sm"></asp:TextBox>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group row">
-                                                                    <label class="col-sm-4 col-form-label">Correo</label>
+                                                                    <label class="col-sm-4 col-form-label">Busca Inversionista (correo, nombre, referencia)</label>
                                                                     <div class="col-sm-8">
-                                                                        <asp:TextBox runat="server" ID="txtCorreo" CssClass="form-control form-control-sm"></asp:TextBox>
+                                                                        <div class="input-group">
+                                                                            <asp:TextBox ID="txtNom" runat="server" CssClass="form-control" 
+                                                                                placeholder="Busca Inversionista" aria-label="Busca Inversionista-" 
+                                                                                aria-describedby="basic-addon2" OnTextChanged="txtNom_TextChanged" AutoPostBack="true" ></asp:TextBox>
+                                                                            <asp:RequiredFieldValidator SetFocusOnError="true" ID="rfv_0" runat="server" ForeColor="Red" Font-Size="Medium"
+                                                                        ControlToValidate="txtNom" Display="Dynamic" ValidationGroup="inversionista">
+                                                                        *</asp:RequiredFieldValidator>
+                                                                        <asp:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server"
+                                                                                CompletionInterval="100"
+                                                                                DelimiterCharacters=""
+                                                                                Enabled="True"
+                                                                                MinimumPrefixLength="1"
+                                                                                ServiceMethod="BuscaInversionista"
+                                                                                TargetControlID="txtNom"
+                                                                                UseContextKey="True">
+                                                                            </asp:AutoCompleteExtender>
+                                                                            <asp:HiddenField ID="hfInversionista" Value="0" runat="server" />
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -641,28 +538,79 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label">Tipo Cliente</label>
-                                                                    <div class="col-sm-9">
-                                                                        <asp:DropDownList ID="cmbTipoEvento" runat="server" CssClass="form-select">
-                                                                            <asp:ListItem Text="Seres de Riqueza"></asp:ListItem>
-                                                                            <asp:ListItem Text="Incubadora"></asp:ListItem>
-                                                                            <asp:ListItem Text="ACCIONISTAS"></asp:ListItem>
-                                                                            <asp:ListItem Text=""></asp:ListItem>
+                                                                    <label class="col-sm-4 col-form-label">Nombre Inversionista</label>
+                                                                    <div class="col-sm-8">
+                                                                        <h4 class="col-form-label"><asp:Label ID="lblNomInvers" runat="server" ForeColor="#006699" Text="Label"></asp:Label></h4>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Clave Inversionista</label>
+                                                                    <div class="col-sm-8">
+                                                                        <h4 class="col-form-label"><asp:Label ID="lblCveInvers" runat="server" ForeColor="#006699" Text="Label"></asp:Label></h4> 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Monto Pago</label>
+                                                                    <div class="col-sm-8">
+                                                                        <asp:TextBox ID="txtMontoPago" runat="server" CssClass="form-control text-uppercase" 
+                                                                            placeholder="0.00" aria-label="Monto Pago" 
+                                                                            aria-describedby="basic-addon2"></asp:TextBox>
+                                                                        <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" ValidChars="0123456789.,"
+                                                                            TargetControlID="txtMontoPago" runat="server" />
+                                                                        <asp:RequiredFieldValidator SetFocusOnError="true" ID="RequiredFieldValidator1" runat="server" ForeColor="Red" Font-Size="Medium"
+                                                                        ControlToValidate="txtMontoPago" Display="Dynamic" ValidationGroup="inversionista">
+                                                                        *</asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Vía depósito</label>
+                                                                    <div class="col-sm-8">
+                                                                        <asp:DropDownList ID="cmbViaDeposito" runat="server" CssClass="form-select">
+                                                                            <asp:ListItem Text="STRIPE"></asp:ListItem>
+                                                                            <asp:ListItem Text="BAJIO"></asp:ListItem>
+                                                                            <asp:ListItem Text="EFECTIVO"></asp:ListItem>
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                        </div>
+                                                        <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label">Fecha Alta</label>
-                                                                    <div class="col-sm-9">
-                                                                        <asp:TextBox ID="txtFecha1" placeholder="Fecha Inicial"
-                                                                            class="form-control mb-2 mr-sm-2" runat="server"></asp:TextBox>
+                                                                    <label class="col-sm-4 col-form-label">Referencia Pago</label>
+                                                                    <div class="col-sm-8">
+                                                                        <asp:TextBox ID="txtReferenciaPago" runat="server" CssClass="form-control text-uppercase" 
+                                                                            placeholder="Referencia Pago" aria-label="Monto Pago" 
+                                                                            aria-describedby="basic-addon2"></asp:TextBox>
+                                                                        <asp:RequiredFieldValidator SetFocusOnError="true" ID="RequiredFieldValidator2" runat="server" ForeColor="Red" Font-Size="Medium"
+                                                                        ControlToValidate="txtReferenciaPago" Display="Dynamic" ValidationGroup="inversionista">
+                                                                        *</asp:RequiredFieldValidator>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group row">
+                                                                    <label class="col-sm-4 col-form-label">Fecha Pago</label>
+                                                                    <div class="col-sm-8">
+                                                                        <asp:TextBox ID="txtFechaPago" runat="server" CssClass="form-control text-uppercase" 
+                                                                            placeholder="dd/mm/aaaa" aria-label="dd/mm/aaaa" 
+                                                                            aria-describedby="basic-addon2"></asp:TextBox>
                                                                         <asp:CalendarExtender ID="CalendarExtender3" runat="server" DaysModeTitleFormat="dd/MM/yyyy" DefaultView="Days"
-                                                                            Enabled="True" Format="dd/MM/yyyy" PopupPosition="BottomLeft" TargetControlID="txtFecha1"
-                                                                            TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
-                                                                        <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" Enabled="True"
-                                                                            TargetControlID="txtFecha1" ValidChars="/_1234567890 "></asp:FilteredTextBoxExtender>
+                                                                        Enabled="True" Format="dd/MM/yyyy" PopupPosition="BottomLeft" TargetControlID="txtFechaPago"
+                                                                        TodaysDateFormat="dd/MM/yyyy"></asp:CalendarExtender>
+                                                                    <asp:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" runat="server" Enabled="True"
+                                                                        TargetControlID="txtFechaPago" ValidChars="/_1234567890 "></asp:FilteredTextBoxExtender>
+                                                                        <asp:RequiredFieldValidator SetFocusOnError="true" ID="RequiredFieldValidator3" runat="server" ForeColor="Red" Font-Size="Medium"
+                                                                        ControlToValidate="txtFechaPago" Display="Dynamic" ValidationGroup="inversionista">
+                                                                        *</asp:RequiredFieldValidator>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -670,11 +618,14 @@
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label">Status Cliente</label>
-                                                                    <div class="col-sm-9">
-                                                                        <asp:DropDownList ID="cmbStatusEvento" runat="server" CssClass="form-select">
-                                                                            <asp:ListItem Text="ACTIVO"></asp:ListItem>
-                                                                            <asp:ListItem Text="CANCELADO"></asp:ListItem>
+                                                                    <label class="col-sm-4 col-form-label">Tipo Pago</label>
+                                                                    <div class="col-sm-8">
+                                                                        <asp:DropDownList ID="cmbTipoPago" runat="server" CssClass="form-select">
+                                                                            <asp:ListItem Text="MENSUALIDAD"></asp:ListItem>
+                                                                            <asp:ListItem Text="ANTICIPO"></asp:ListItem>
+                                                                            <asp:ListItem Text="CONTADO"></asp:ListItem>
+                                                                            <asp:ListItem Text="ENGANCHE"></asp:ListItem>
+                                                                            <asp:ListItem Text="OTRO"></asp:ListItem>
                                                                         </asp:DropDownList>
                                                                     </div>
                                                                 </div>
@@ -683,7 +634,7 @@
                                                                 <div class="form-group row">
                                                                     <div class="col-sm-9">
                                                                         <asp:Button runat="server" ID="btnGuardar" CssClass="form-control btn-gradient-success"
-                                                                            OnClick="btnGuardar_Click" Text="Guardar" />
+                                                                            OnClick="btnGuardar_Click" Text="Guardar" ValidationGroup="inversionista" CausesValidation="true"/>
                                                                     </div>
                                                                 </div>
                                                             </div>

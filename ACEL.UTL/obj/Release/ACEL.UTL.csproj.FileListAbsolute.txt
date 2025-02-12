@@ -12,3 +12,17 @@ C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.UTL\obj\Release\ACEL.UTL.csproj.CoreCompil
 C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.UTL\obj\Release\ACEL.UTL.csproj.CopyComplete
 C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.UTL\obj\Release\ACEL.UTL.dll
 C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.UTL\obj\Release\ACEL.UTL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.UTL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.UTL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.BO.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.DAL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.ENT.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.BO.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.DAL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.ENT.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\bin\Release\ACEL.ENT.dll.config
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\obj\Release\ACEL.UTL.csproj.AssemblyReference.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\obj\Release\ACEL.UTL.csproj.CoreCompileInputs.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\obj\Release\ACEL.UTL.csproj.CopyComplete
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\obj\Release\ACEL.UTL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.UTL\obj\Release\ACEL.UTL.pdb

@@ -8,3 +8,13 @@ C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Release\ACEL.DAL.csproj.CoreCompil
 C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Release\ACEL.DAL.csproj.CopyComplete
 C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Release\ACEL.DAL.dll
 C:\Users\YUGEN\Desktop\ACEL\ACEL\ACEL.DAL\obj\Release\ACEL.DAL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\bin\Release\ACEL.DAL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\bin\Release\ACEL.DAL.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\bin\Release\ACEL.ENT.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\bin\Release\ACEL.ENT.pdb
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\bin\Release\ACEL.ENT.dll.config
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\obj\Release\ACEL.DAL.csproj.AssemblyReference.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\obj\Release\ACEL.DAL.csproj.CoreCompileInputs.cache
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\obj\Release\ACEL.DAL.csproj.CopyComplete
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\obj\Release\ACEL.DAL.dll
+C:\Users\YUGEN\Desktop\ACEL\ACEL1.0\GRANDEZA\ACEL.DAL\obj\Release\ACEL.DAL.pdb

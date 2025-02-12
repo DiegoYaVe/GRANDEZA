@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="ACEL.WEB.Default" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,7 +28,8 @@
 
 </head>
 <body class="sidebar-fixed">
-    <form runat="server">
+    <form runat="server" enctype="multipart/form-data">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div class="container-scroller">
             <!-- partial:partials/_navbar.html -->
             <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -500,12 +503,15 @@
                                 <div class="card bg-gradient-success card-img-holder text-white">
                                     <div class="card-body">
                                         <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" style="z-index: 1;" />
-                                        <h4 class="font-weight-normal mb-3 d-flex justify-content-between align-items-center" style="z-index: 2;">Pagos STRIPE
-                        <asp:Button ID="btnRealizarPagosStripe" runat="server" Text="Realizar Pagos" OnClick="btnRealizarPagosStripe_Click" CssClass="btn btn-primary" Style="z-index: 3; position: relative;" />
+                                        <h4 class="font-weight-normal mb-3 d-flex justify-content-between align-items-center" style="z-index: 2;">Buscar Pagos STRIPE
+                                            <asp:ImageButton ImageUrl="~/assets/images/actualizar1.png" ID="btnRealizarPagosStripe" Width="50" Height="50" runat="server"  OnClick="btnRealizarPagosStripe_Click"  Style="z-index: 3; position: relative;" />
                                         </h4>
-                                        <h2 class="mb-5">$ 15,0000</h2>
-                                        <h6 class="card-text">
-                                            <asp:Literal Text="Total de pagos" runat="server" ID="ltrTotalPagos"></asp:Literal></h6>
+                                        <h2 class="mb-5">$
+                                            <asp:Literal ID="ltrMonto" runat="server"></asp:Literal></h2>
+                                        <h6 class="font-weight-normal mb-3 d-flex justify-content-between align-items-center">
+                                            <asp:Literal Text="Pendientes de aplicar: " runat="server" ID="ltrTotalPagos"></asp:Literal>
+                                            <asp:Button Visible="false" ID="btnAplicarSTRIPE" runat="server" Text="Aplicar Pagos STRIPE" OnClick="btnAplicarSTRIPE_Click" CssClass="btn btn-gradient-info" Style="z-index: 3; position: relative;" />
+                                        </h6>
                                     </div>
                                 </div>
                             </div>
@@ -513,26 +519,28 @@
                                 <div class="card bg-gradient-danger card-img-holder text-white">
                                     <div class="card-body">
                                         <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" style="z-index: 1;" />
-                                        <h4 class="font-weight-normal mb-3 d-flex justify-content-between align-items-center" style="z-index: 2;">Pagos Bajio y Otros
-                                          <button class="btn btn-primary"
-                                              style="z-index: 3; position: relative; background-color: transparent; border: none; cursor: pointer; padding: 0; display: inline-flex; align-items: center; justify-content: center;"
-                                              onclick="btnRealizarPagosBajio_Click();">
-                                              <i class="mdi mdi-upload mdi-24px"></i>
-                                          </button>
-                                        </h4>
-                                        <h2 class="mb-5">45,6334</h2>
-                                        <h6 class="card-text">
-                                            <asp:Literal Text="Total de pagos" runat="server" ID="ltrBajio"></asp:Literal></h6>
+                                        <h4 class="font-weight-normal mb-3 d-flex justify-content-between align-items-center" style="z-index: 2;">Subir Pagos BAJIO
+                                            <asp:ImageButton ID="btnProcesarExcel" runat="server" ImageUrl="~/assets/images/subir.png" OnClick="btnProcessExcel_Click" Width="50" Height="50" Style="z-index: 3; position: relative;" />
+                                         </h4>
+                                        <!-- Control para cargar el archivo -->
+                                        <ajaxToolkit:AsyncFileUpload OnUploadedComplete="afuExcelFile_UploadedComplete" ID="afuExcelFile" runat="server" PersistFile="True" />
+                                        <!-- Información -->
+                                        <h2 class="mb-5"><asp:Literal ID="ltrMontoBajio" runat="server"></asp:Literal></h2>
+                                        <h6 class="font-weight-normal mb-3 d-flex justify-content-between align-items-center">
+                                            <asp:Literal Text="Pendientes de aplicar" runat="server" ID="ltrBajio"></asp:Literal>
+                                            <asp:Button Visible="false" ID="btnAplicarBAJIO" runat="server" Text="Aplicar Pagos BAJIO" OnClick="btnAplicarBAJIO_Click" CssClass="btn btn-gradient-info" Style="z-index: 3; position: relative;" />
+                                        </h6>
                                     </div>
-
                                 </div>
                             </div>
+
+
                         </div>
                         <div class="row">
                             <div class="col-12 grid-margin">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Pagos aplicados</h4>
+                                        <h4 class="card-title">Pagos sin aplicar de STRIPE</h4>
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead>
@@ -543,6 +551,7 @@
                                                         <th>Fecha</th>
                                                         <th>CARD ID</th>
                                                         <th>ID</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -562,6 +571,10 @@
                                                                     <%# Eval("CardID") %></td>
                                                                 <td style="max-width: 120px; word-wrap: break-word; white-space: normal;">
                                                                     <%# Eval("ID") %></td>
+                                                                <td>
+                                                                    <label class="badge badge-gradient-success">
+                                                                        <%# Eval("StatusGrandeza") %></label>
+                                                                </td>
                                                             </tr>
                                                         </ItemTemplate>
                                                     </asp:Repeater>
@@ -576,36 +589,41 @@
                             <div class="col-12 grid-margin">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h4 class="card-title">Pagos no localizados</h4>
+                                        <h4 class="card-title">Pagos sin aplicar de BAJIO</h4>
                                         <div class="table-responsive">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>Nombre</th>
-                                                        <th>Correo</th>
+                                                        <th>Referencia</th>
                                                         <th>Amount</th>
                                                         <th>Fecha</th>
                                                         <th>CARD ID</th>
                                                         <th>ID</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <asp:Repeater runat="server" ID="Repeater1">
+                                                    <asp:Repeater runat="server" ID="rptBajio">
                                                         <ItemTemplate>
                                                             <tr>
                                                                 <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
-                                                                    <%# Eval("Referencia") %></td>
+                                                                    <%# Eval("ReferenciaBajio") %></td>
                                                                 <td style="max-width: 200px; word-wrap: break-word; white-space: normal;">
-                                                                    <%# Eval("Correo") %></td>
+                                                                    <%# Eval("CorreoBajio") %></td>
                                                                 <td>
                                                                     <label class="badge badge-gradient-success">
                                                                         <%# decimal.Parse(Eval("Amount").ToString()).ToString("N2") %></label>
                                                                 </td>
-                                                                <td><%# Eval("Created") %></td>
+                                                                <td><%# Eval("CreatedBajio") %></td>
                                                                 <td style="max-width: 120px; word-wrap: break-word; white-space: normal;">
-                                                                    <%# Eval("CardID") %></td>
+                                                                    <%# Eval("CardIDBajio") %></td>
                                                                 <td style="max-width: 120px; word-wrap: break-word; white-space: normal;">
-                                                                    <%# Eval("ID") %></td>
+                                                                    <%# Eval("IDBajio") %></td>
+                                                                <td>
+                                                                    <label class="badge badge-gradient-success">
+                                                                        <%# Eval("StatusBajio") %></label>
+                                                                </td>
                                                             </tr>
                                                         </ItemTemplate>
                                                     </asp:Repeater>
@@ -616,7 +634,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-12 grid-margin">
                                 <div class="card">
@@ -650,14 +667,24 @@
                                                 </div>
                                             </div>
                                             <!-- Sección de gráfica (6 columnas) -->
-                                            <div class="col-md-6 grid-margin">
-                                                <div class="card h-100">
-                                                    <div class="card-body align-items-center justify-content-center text-center">
-                                                        <h4 class="card-title">Porcentaje de Avance a la Meta</h4>
-                                                        <div class="doughnutjs-wrapper d-flex justify-content-center">
-                                                            <canvas id="traffic-chart"></canvas>
-                                                        </div>
-                                                        <div id="traffic-chart-legend" class="rounded-legend legend-vertical legend-bottom-left pt-4"></div>
+                                            <div class="col-md-6 grid-margin d-flex flex-column justify-content-center text-center">
+                                                <div class="card-body">
+                                                    <h4 class="card-title">Porcentaje de avance a la meta</h4>
+                                                    <div class="mb-4" id="g1">
+                                                        <svg height="100%" version="1.1" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; top: -0.6875px;">
+                                                            <desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.4</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><filter id="inner-shadow-g1"><feOffset dx="0" dy="3"></feOffset>
+                                                                <feGaussianBlur result="offset-blur" stdDeviation="5"></feGaussianBlur>
+                                                                <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"></feComposite>
+                                                                <feFlood flood-color="black" flood-opacity="0.2" result="color"></feFlood>
+                                                                <feComposite operator="in" in="color" in2="inverse" result="shadow"></feComposite>
+                                                                <feComposite operator="over" in="shadow" in2="SourceGraphic"></feComposite>
+                                                            </filter>
+                                                            </defs><path fill="#edebeb" stroke="none" d="M157.375,120L129.25,120A75,75,0,0,1,279.25,120L251.125,120A46.875,46.875,0,0,0,157.375,120Z" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" filter="url(#inner-shadow-g1)"></path><path fill="#fd4600" stroke="none" d="M157.375,120L129.25,120A75,75,0,0,1,268.0723787002962,80.60832604425177L244.13898668768513,95.38020377765736A46.875,46.875,0,0,0,157.375,120Z" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);" filter="url(#inner-shadow-g1)"></path><text x="204.25" y="23.4375" text-anchor="middle" font-family="sans-serif" font-size="15px" stroke="none" fill="#999999" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 15px; font-weight: bold; fill-opacity: 1;" font-weight="bold" fill-opacity="1"><tspan dy="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Meta</tspan>
+                                                            </text><text x="204.25" y="117.64705882352942" text-anchor="middle" font-family="Arial" font-size="23px" stroke="none" fill="#010101" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 23px; font-weight: bold; fill-opacity: 1;" font-weight="bold" fill-opacity="1"><tspan dy="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">58.50</tspan>
+                                                            </text><text x="204.25" y="134.18552036199097" text-anchor="middle" font-family="Arial" font-size="10px" stroke="none" fill="#b3b3b3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 10px; font-weight: normal; fill-opacity: 1;" font-weight="normal" fill-opacity="1"><tspan dy="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">%</tspan>
+                                                            </text><text x="143.3125" y="134.18552036199097" text-anchor="middle" font-family="Arial" font-size="10px" stroke="none" fill="#b3b3b3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 10px; font-weight: normal; fill-opacity: 1;" font-weight="normal" fill-opacity="1"><tspan dy="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan>
+                                                            </text><text x="265.1875" y="134.18552036199097" text-anchor="middle" font-family="Arial" font-size="10px" stroke="none" fill="#b3b3b3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 10px; font-weight: normal; fill-opacity: 1;" font-weight="normal" fill-opacity="1"><tspan dy="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">200 M</tspan>
+                                                            </text></svg>
                                                     </div>
                                                 </div>
                                             </div>
@@ -732,6 +759,110 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                                <div class="card card-statistics">
+                                    <div class="card-body pb-0">
+                                        <p class="text-muted">Total LEADS</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="font-weight-semibold">0</h4>
+                                        </div>
+                                        <small class="text-muted">Importados desde PIPEDRIVE.</small>
+                                    </div>
+                                    <canvas class="mt-2" height="40" id="statistics-graph-1"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                                <div class="card card-statistics">
+                                    <div class="card-body pb-0">
+                                        <p class="text-muted">Total Apartados</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="font-weight-semibold">1,173</h4>
+                                        </div>
+                                        <small class="text-muted">Conversión de Apartados</small>
+                                    </div>
+                                    <canvas class="mt-2" height="40" id="statistics-graph-3"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-lg-3 col-md-3 col-sm-6 grid-margin stretch-card">
+                                <div class="card card-statistics">
+                                    <div class="card-body pb-0">
+                                        <p class="text-muted">Enganches</p>
+                                        <div class="d-flex align-items-center">
+                                            <h4 class="font-weight-semibold">1,088</h4>
+                                        </div>
+                                        <small class="text-muted">Conversión de Enganches 93.47%</small>
+                                    </div>
+                                    <canvas class="mt-2" height="40" id="statistics-graph-2"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-sm-6 col-md-3 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center">
+                                            <i class="mdi mdi-clock icon-lg text-primary d-flex align-items-center"></i>
+                                            <div class="d-flex flex-column ms-4">
+                                                <div class="d-flex flex-column">
+                                                    <p class="mb-0">Venta prom. X Evento</p>
+                                                    <h4 class="font-weight-bold">$9.953.827,00</h4>
+                                                </div>
+                                                <small class="text-muted">Unicamente carpetas cerradas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center">
+                                            <i class="mdi mdi-cart-outline icon-lg text-success d-flex align-items-center"></i>
+                                            <div class="d-flex flex-column ms-4">
+                                                <div class="d-flex flex-column">
+                                                    <p class="mb-0">Ticket Promedio</p>
+                                                    <h4 class="font-weight-bold">$103.041,69</h4>
+                                                </div>
+                                                <small class="text-muted">%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center">
+                                            <i class="mdi mdi-laptop icon-lg text-warning d-flex align-items-center"></i>
+                                            <div class="d-flex flex-column ms-4">
+                                                <div class="d-flex flex-column">
+                                                    <p class="mb-0">Clientes por Evento</p>
+                                                    <h4 class="font-weight-bold">97</h4>
+                                                </div>
+                                                <small class="text-muted">Unicamente carpetas cerradas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3 grid-margin stretch-card">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-center">
+                                            <i class="mdi mdi-earth icon-lg text-danger d-flex align-items-center"></i>
+                                            <div class="d-flex flex-column ms-4">
+                                                <div class="d-flex flex-column">
+                                                    <p class="mb-0">% Conversíon X Evento</p>
+                                                    <h4 class="font-weight-bold">32,62 %</h4>
+                                                </div>
+                                                <small class="text-muted">Únicamente carpetas cerradas</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- content-wrapper ends -->
                     <!-- partial:partials/_footer.html -->
@@ -746,6 +877,7 @@
                 <!-- main-panel ends -->
             </div>
             <!-- page-body-wrapper ends -->
+            
         </div>
     </form>
     <!-- container-scroller -->
@@ -755,6 +887,9 @@
     <!-- Plugin js for this page -->
     <script src="assets/vendors/chart.js/chart.umd.js"></script>
     <script src="assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+    <script src="assets/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+    <script src="assets/vendors/justgage/raphael-2.1.4.min.js"></script>
+    <script src="assets/vendors/justgage/justgage.js"></script>
     <!-- End plugin js for this page -->
     <!-- inject:js -->
     <script src="assets/js/off-canvas.js"></script>
@@ -766,6 +901,7 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/widgets.js"></script>
     <!-- End custom js for this page -->
 </body>
 </html>

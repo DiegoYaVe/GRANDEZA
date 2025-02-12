@@ -96,6 +96,15 @@ namespace ACEL.WEB.pages.operacion
         protected global::System.Web.UI.WebControls.HiddenField hfidRegistro;
 
         /// <summary>
+        /// Control HiddenFieldData.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HiddenFieldData;
+
+        /// <summary>
         /// Control rptConfiguraciones.
         /// </summary>
         /// <remarks>
@@ -193,42 +202,6 @@ namespace ACEL.WEB.pages.operacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGuardar;
-
-        /// <summary>
-        /// Control ltrTotal.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrTotal;
-
-        /// <summary>
-        /// Control ltrAnticipo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrAnticipo;
-
-        /// <summary>
-        /// Control ltrEnganche.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrEnganche;
-
-        /// <summary>
-        /// Control ltrPagos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltrPagos;
 
         /// <summary>
         /// Control rptPagos.

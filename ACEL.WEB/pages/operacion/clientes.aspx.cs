@@ -11,6 +11,7 @@ using System.Data;
 using System.Text;
 using System.Web.Security;
 using ACEL.BO.bo;
+using System.Web.Script.Serialization;
 
 namespace ACEL.WEB.pages.operacion
 {
@@ -158,23 +159,23 @@ namespace ACEL.WEB.pages.operacion
             //if (dtUsuario_VS.Rows[0]["Perfil"].ToString() == "ADMIN" && long.Parse(dtUsuario_VS.Rows[0]["Acceso"].ToString()) <= 2)
             //{
 
-                //CargaCombosClientes();
-                PresentaGridBusqueda(true);
-                //btnAlta.Visible = true;
-                //btnGuardar.Visible = true;
-                //txtUsuario.Visible = true;
-                //lblUsuario.Visible = false;
-                //panDatosSirscom.Visible = true;
+            //CargaCombosClientes();
+            PresentaGridBusqueda(true);
+            //btnAlta.Visible = true;
+            //btnGuardar.Visible = true;
+            //txtUsuario.Visible = true;
+            //lblUsuario.Visible = false;
+            //panDatosSirscom.Visible = true;
             //}
             //else
             //{
-                //PresentaGridBusqueda(false);
-                //btnAlta.Visible = false;
-                //btnConsulta.Visible = false;
-                //btnGuardar.Visible = true;
-                //txtUsuario.Visible = false;
-                //lblUsuario.Visible = true;
-                //panDatosSirscom.Visible = false;
+            //PresentaGridBusqueda(false);
+            //btnAlta.Visible = false;
+            //btnConsulta.Visible = false;
+            //btnGuardar.Visible = true;
+            //txtUsuario.Visible = false;
+            //lblUsuario.Visible = true;
+            //panDatosSirscom.Visible = false;
 
             //}
             TipoAmbiente("BUSQUEDA");
@@ -187,27 +188,21 @@ namespace ACEL.WEB.pages.operacion
             switch (pTipo)
             {
                 case "BUSQUEDA":
-                    panConsulta.Visible = true;
-                    panDatos.Visible = false;
-                    btnConsulta.Visible = false;
-                    btnAlta.Visible = true;
+                    panConsulta.Style["display"] = "block"; // ✅ Se muestra el panel de búsqueda
+                    panDatos.Style["display"] = "none"; // ❌ Se oculta el de datos
+                    btnConsulta.Style["display"] = "none";
+                    btnAlta.Style["display"] = "block";
                     break;
+
                 case "DATOS":
-                    panConsulta.Visible = false;
-                    panDatos.Visible = true;
-                    btnConsulta.Visible = true;
-                    btnAlta.Visible = false;
+                    panConsulta.Style["display"] = "none"; // ❌ Se oculta el panel de búsqueda
+                    panDatos.Style["display"] = "block"; // ✅ Se muestra el panel de datos
+                    btnConsulta.Style["display"] = "block";
+                    btnAlta.Style["display"] = "none";
                     break;
             }
-            //if (dtUsuario_VS.Rows[0]["Perfil"].ToString() == "ADMIN" && long.Parse(dtUsuario_VS.Rows[0]["Acceso"].ToString()) <= 2)
-            //{
-            //    //btnAlta.Visible = true;
-            //}
-            //else
-            //{
-            //    //btnAlta.Visible = false;
-            //}
         }
+
         private void CrearTablaBusqueda()
         {
             dtBusqueda = new DataTable();
@@ -270,7 +265,7 @@ namespace ACEL.WEB.pages.operacion
                 drFila["Status"] = "PENDIENTE";
                 dt.Rows.Add(drFila);
             }
-            
+
 
             for (int i = 0; i < eiEscala.Mensualidad.Value; i++)
             {
@@ -280,7 +275,7 @@ namespace ACEL.WEB.pages.operacion
                 drFila["Fecha"] = currentDateTime.ToShortDateString();
                 drFila["Monto"] = ((Total - Enganche) / eiEscala.Mensualidad.Value).ToString("N2");
                 drFila["Status"] = "PENDIENTE";
-                
+
                 dt.Rows.Add(drFila);
             }
 
@@ -296,9 +291,9 @@ namespace ACEL.WEB.pages.operacion
             if (pAdmin)
             {
                 elCURU = new boACEL_CUENTA_INVERSIONISTAS().Buscar(1, 1);
-               
+
             }
-           
+
 
             //if (mNomConf)
             //{
@@ -319,9 +314,9 @@ namespace ACEL.WEB.pages.operacion
                 drFila["id"] = eiAlmacen.idInversionista;
                 drFila["NomComercial"] = eiAlmacen.NomComercial;
 
-                if (eiAlmacen.TipoInversionista == "1")
+                if (eiAlmacen.Cliente == "1")
                 {
-                    switch (eiAlmacen.Cliente)
+                    switch (eiAlmacen.TipoInversionista)
                     {
                         case "1":
                             drFila["TipoCliente"] = "SERES DE RIQUEZA";
@@ -333,7 +328,7 @@ namespace ACEL.WEB.pages.operacion
                 }
                 else
                 {
-                    switch (eiAlmacen.Cliente)
+                    switch (eiAlmacen.TipoInversionista)
                     {
                         case "1":
                             drFila["TipoCliente"] = "ACCIONISTA";
@@ -346,7 +341,7 @@ namespace ACEL.WEB.pages.operacion
                             break;
                     }
                 }
-                
+
                 drFila["Correo"] = eiAlmacen.CorreoContacto;
                 drFila["Evento"] = eiAlmacen.NombreEvento;
                 drFila["Certificados"] = eiAlmacen.CantidadCertificados;
@@ -363,8 +358,26 @@ namespace ACEL.WEB.pages.operacion
             List<ENT.ACEL_CUENTA_INVERSIONISTAS> elAltaCRM2 = new List<ENT.ACEL_CUENTA_INVERSIONISTAS>();
             elAltaCRM2 = Busqueda(pAdmin);
             LlenarBusqueda(elAltaCRM2);
+            HiddenFieldData.Value = DataTableToJson(dtBusqueda_VS);
             rptConfiguraciones.DataSource = dtBusqueda_VS;
             rptConfiguraciones.DataBind();
+        }
+        private string DataTableToJson(DataTable dt)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> lista = new List<Dictionary<string, object>>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                Dictionary<string, object> item = new Dictionary<string, object>();
+                foreach (DataColumn column in dt.Columns)
+                {
+                    item[column.ColumnName] = row[column].ToString();
+                }
+                lista.Add(item);
+            }
+
+            return serializer.Serialize(lista);
         }
         private void LimpiaDatos()
         {
@@ -466,7 +479,7 @@ namespace ACEL.WEB.pages.operacion
             else
                 pTipoEscala = "";
 
-            
+
 
             ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS eiEscala = new ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS();
             eiEscala = new boACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS().BuscartTipoInversionista(1, 1, eiCliente.idEvento.Value, cmbInversionista.SelectedItem.Text, pTipoEscala, eiCliente.CondicionesPago);
@@ -516,30 +529,30 @@ namespace ACEL.WEB.pages.operacion
         }
         private void CargaTotalPagos(ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiCert, long pCertificados)
         {
-            decimal Total = (peiCert.ValorNominal.Value * pCertificados);
-            decimal Anticipo = peiCert.Aticipo.Value;
-            decimal Enganche;
-            if (peiCert.TipoPago == "MENSUALIDADES")
-                Enganche = Total * decimal.Parse("0." + peiCert.EngancheLiquidacion.Value.ToString("N0"));
-            else
-                Enganche = Total - Anticipo;
+            //decimal Total = (peiCert.ValorNominal.Value * pCertificados);
+            //decimal Anticipo = peiCert.Aticipo.Value;
+            //decimal Enganche;
+            //if (peiCert.TipoPago == "MENSUALIDADES")
+            //    Enganche = Total * decimal.Parse("0." + peiCert.EngancheLiquidacion.Value.ToString("N0"));
+            //else
+            //    Enganche = Total - Anticipo;
 
-            ltrTotal.Text = Total.ToString("N2");
-            ltrAnticipo.Text = Anticipo.ToString("N2");
-            ltrEnganche.Text = Enganche.ToString("N2");
-            if (peiCert.TipoPago == "MENSUALIDADES")
-            {
-                try
-                {
-                    ltrPagos.Text = peiCert.Mensualidad.Value.ToString("N0") + " PAGOS DE $" +
-                      ((Total - Enganche) / peiCert.Mensualidad.Value).ToString("N2");
-                }
-                catch { ltrPagos.Text = "0.00"; }
-            }
-                
-            else
-                ltrPagos.Text = "1 PAGO DE $" +
-                    Enganche.ToString("N2");
+            //ltrTotal.Text = Total.ToString("N2");
+            //ltrAnticipo.Text = Anticipo.ToString("N2");
+            //ltrEnganche.Text = Enganche.ToString("N2");
+            //if (peiCert.TipoPago == "MENSUALIDADES")
+            //{
+            //    try
+            //    {
+            //        ltrPagos.Text = peiCert.Mensualidad.Value.ToString("N0") + " PAGOS DE $" +
+            //          ((Total - Enganche) / peiCert.Mensualidad.Value).ToString("N2");
+            //    }
+            //    catch { ltrPagos.Text = "0.00"; }
+            //}
+
+            //else
+            //    ltrPagos.Text = "1 PAGO DE $" +
+            //        Enganche.ToString("N2");
         }
         #endregion
 
@@ -565,6 +578,8 @@ namespace ACEL.WEB.pages.operacion
                 //    panMenuUsuario.Visible = true;
                 //    PresentaRPTMenu();
                 //}
+                panConsulta.Style["display"] = "block";
+                panDatos.Style["display"] = "none";
             }
         }
         protected void lnkSalir_Click(object sender, EventArgs e)
@@ -600,26 +615,48 @@ namespace ACEL.WEB.pages.operacion
             {
                 pTipoEscala = "1-9 CONTADO";
             }
-            else if (certificados >= 10 && certificados <= 39)
+            else if (certificados == 10)
             {
                 if (tipoPago == "CONTADO")
                 {
-                    pTipoEscala = "10-39 CONTADO";
+                    pTipoEscala = "10 CONTADO";
                 }
                 else
                 {
-                    pTipoEscala = "10-39 MENSUALIDADES";
+                    pTipoEscala = "10 MENSUALIDADES";
                 }
             }
-            else if (certificados >= 40 && certificados <= 99)
+            else if (certificados >= 11 && certificados <= 39)
             {
                 if (tipoPago == "CONTADO")
                 {
-                    pTipoEscala = "40-99 CONTADO";
+                    pTipoEscala = "11-39 CONTADO";
                 }
                 else
                 {
-                    pTipoEscala = "40-99 MENSUALIDADES";
+                    pTipoEscala = "11-39 MENSUALIDADES";
+                }
+            }
+            else if (certificados == 40)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "40 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "40 MENSUALIDADES";
+                }
+            }
+            else if (certificados >= 41 && certificados <= 99)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "41-99 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "41-99 MENSUALIDADES";
                 }
             }
             else if (certificados >= 100)
@@ -673,7 +710,7 @@ namespace ACEL.WEB.pages.operacion
             }
             else
             {
-                peiConfigura = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1,1,long.Parse(hfidRegistro.Value));
+                peiConfigura = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, long.Parse(hfidRegistro.Value));
                 peiConfigura.NomComercial = txtNom.Text;
                 peiConfigura.Cliente = cmbCliente.SelectedValue;
                 peiConfigura.CorreoContacto = txtCorreo.Text;
@@ -693,6 +730,10 @@ namespace ACEL.WEB.pages.operacion
             }
             PresentaGridBusqueda(true);
             CargaTotalPagos(eiEscala, certificados);
+            CreaTablaPagos();
+            LlenarTablaPagos(long.Parse(hfidRegistro.Value), eiEscala);
+            rptPagos.DataSource = dtPagos_VS;
+            rptPagos.DataBind();
             //TipoAmbiente("BUSQUEDA");
         }
         protected void rptConfiguraciones_ItemCommand(object source, RepeaterCommandEventArgs e)
@@ -704,8 +745,10 @@ namespace ACEL.WEB.pages.operacion
             {
                 LimpiaDatos();
                 hfidRegistro.Value = hf.Value;
-                TipoAmbiente("DATOS");
-                CargaCliente(long.Parse(hf.Value));
+
+                // ✅ Enviar el ID a la función de JavaScript
+                ScriptManager.RegisterStartupScript(this, GetType(), "mostrarDatos",
+                    "mostrarDatos(" + hf.Value + ");", true);
             }
         }
         protected void btnConsultar_Click1(object sender, EventArgs e)
@@ -771,5 +814,157 @@ namespace ACEL.WEB.pages.operacion
         {
             CargaInversionista(long.Parse(cmbCliente.SelectedValue));
         }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static string FiltrarInversionistas(string dataJson, string criterio, string orden)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            List<Dictionary<string, object>> inversionistas = serializer.Deserialize<List<Dictionary<string, object>>>(dataJson);
+
+            // Aplicar filtro de Evento
+            if (!string.IsNullOrEmpty(criterio))
+            {
+                inversionistas = inversionistas.Where(x => x["Evento"].ToString().Contains(criterio)).ToList();
+            }
+
+            // Aplicar ordenación
+            if (orden == "asc")
+            {
+                inversionistas = inversionistas.OrderBy(x => x["NomComercial"].ToString()).ToList();
+            }
+            else if (orden == "desc")
+            {
+                inversionistas = inversionistas.OrderByDescending(x => x["NomComercial"].ToString()).ToList();
+            }
+
+            return serializer.Serialize(inversionistas);
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static string ObtenerInversionista(int idInversionista)
+        {
+            try
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                ACEL_CUENTA_INVERSIONISTAS inversionista = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, idInversionista);
+
+                if (inversionista == null)
+                    return serializer.Serialize(new { error = "Inversionista no encontrado" });
+
+                // Obtener descripción de Tipo de Inversionista
+                string tipoInversionistaTexto = ObtenerDescripcionTipoInversionista(inversionista.Cliente, inversionista.TipoInversionista);
+
+                // Determinar escala
+                string tipoEscala = DeterminarTipoEscala(inversionista.CantidadCertificados.Value, inversionista.CondicionesPago);
+                ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS escala = new boACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS()
+                    .BuscartTipoInversionista(1, 1, inversionista.idEvento.Value, tipoInversionistaTexto, tipoEscala, inversionista.CondicionesPago);
+
+                if (escala == null)
+                    return serializer.Serialize(new { error = "No se encontró la escala para este inversionista." });
+
+                // Calcular valores del Estado de Cuenta
+                decimal total = escala.ValorNominal.Value * inversionista.CantidadCertificados.Value;
+                decimal anticipo = escala.Aticipo.Value;
+                decimal enganche = escala.TipoPago == "MENSUALIDADES"
+                    ? total * decimal.Parse("0." + escala.EngancheLiquidacion.Value.ToString("N0"))
+                    : total - anticipo;
+
+                List<Dictionary<string, object>> pagos = GenerarPagos(idInversionista, escala);
+
+                var datos = new
+                {
+                    id = inversionista.idInversionista,
+                    nombre = inversionista.NomComercial,
+                    correo = inversionista.CorreoContacto,
+                    telefono = inversionista.TelContacto,
+                    evento = inversionista.idEvento,
+                    certificados = inversionista.CantidadCertificados,
+                    tipo = inversionista.TipoInversionista,
+                    tipoTexto = tipoInversionistaTexto,
+                    total = total.ToString("N2"),
+                    anticipo = anticipo.ToString("N2"),
+                    enganche = enganche.ToString("N2"),
+                    pagos = pagos
+                };
+
+                Console.WriteLine("Estado de cuenta generado correctamente:", datos); // DEBUG
+
+                return serializer.Serialize(datos);
+            }
+            catch (Exception ex)
+            {
+                return new JavaScriptSerializer().Serialize(new { error = ex.Message });
+            }
+        }
+        private static string ObtenerDescripcionTipoInversionista(string cliente, string tipoInversionista)
+        {
+            List<ACEL_CUENTA_INDICES> elIndices = new boACEL_INDICES().BuscarValorAsociado(1, 1, long.Parse(cliente));
+
+            ACEL_CUENTA_INDICES tipo = elIndices.FirstOrDefault(x => x.idDetalle.ToString() == tipoInversionista);
+
+            return tipo != null ? tipo.Descripcion : "Desconocido";
+        }
+
+
+        // Método auxiliar para determinar la escala de inversión
+        private static string DeterminarTipoEscala(long certificados, string tipoPago)
+        {
+            if (certificados >= 1 && certificados <= 9) return "1-9 CONTADO";
+            if (certificados == 10) return tipoPago == "CONTADO" ? "10 CONTADO" : "10 MENSUALIDADES";
+            if (certificados >= 11 && certificados <= 39) return tipoPago == "CONTADO" ? "11-39 CONTADO" : "11-39 MENSUALIDADES";
+            if (certificados == 40) return tipoPago == "CONTADO" ? "40 CONTADO" : "40 MENSUALIDADES";
+            if (certificados >= 41 && certificados <= 99) return tipoPago == "CONTADO" ? "41-99 CONTADO" : "41-99 MENSUALIDADES";
+            if (certificados >= 100) return tipoPago == "CONTADO" ? "+ de 100 CONTADO" : "+ de 100 MENSUALIDADES";
+            return "";
+        }
+
+        // Método auxiliar para generar pagos del inversionista
+        private static List<Dictionary<string, object>> GenerarPagos(long pidInversionista, ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS escala)
+        {
+            DateTime currentDateTime = DateTime.Now;
+            List<Dictionary<string, object>> pagos = new List<Dictionary<string, object>>();
+
+            decimal total = (escala.ValorNominal.Value * 10);
+            decimal anticipo = escala.Aticipo.Value;
+            decimal enganche = total * decimal.Parse("0." + escala.EngancheLiquidacion.Value.ToString("N0"));
+
+            pagos.Add(new Dictionary<string, object>
+            { 
+        { "Descripcion", "Anticipo" },
+        { "Fecha", currentDateTime.AddDays(3).ToShortDateString() },
+        { "Monto", anticipo.ToString("N2") },
+        { "Status", "PENDIENTE" }
+            });
+
+            if (escala.TipoPago == "MENSUALIDADES")
+            {
+                pagos.Add(new Dictionary<string, object>
+        {
+            { "Descripcion", "Enganche" },
+            { "Fecha", currentDateTime.AddDays(10).ToShortDateString() },
+            { "Monto", enganche.ToString("N2") },
+            { "Status", "PENDIENTE" }
+        });
+            }
+            else
+            {
+                pagos.Add(new Dictionary<string, object>
+        {
+            { "Descripcion", "Liquidación" },
+            { "Fecha", currentDateTime.AddDays(10).ToShortDateString() },
+            { "Monto", enganche.ToString("N2") },
+            { "Status", "PENDIENTE" }
+        });
+            }
+
+            return pagos;
+
+        }
+
+
     }
+
+
 }

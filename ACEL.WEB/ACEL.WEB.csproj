@@ -132,6 +132,7 @@
     <Content Include="assets\images\auth\bg_login.jpg" />
     <Content Include="assets\images\auth\lockscreen-bg.jpg" />
     <Content Include="assets\images\auth\register-bg.jpg" />
+    <Content Include="assets\images\actualizar1.png" />
     <Content Include="assets\images\brand_icons\bitmap.jpg" />
     <Content Include="assets\images\brand_icons\oval-copy.jpg" />
     <Content Include="assets\images\brand_icons\oval.jpg" />
@@ -387,6 +388,7 @@
     <Content Include="assets\images\sprites\jsgrid-icons.png" />
     <Content Include="assets\images\sprites\red.png" />
     <Content Include="assets\images\sprites\yellow.png" />
+    <Content Include="assets\images\subir.png" />
     <Content Include="assets\js\ace.js" />
     <Content Include="assets\js\alerts.js" />
     <Content Include="assets\js\avgrund.js" />
@@ -1776,6 +1778,9 @@
     <Content Include="pages\tesoreria\cap_ingresos.aspx" />
     <Content Include="pages\tesoreria\css\tesoreria.css" />
     <Content Include="pages\tesoreria\js\tesoreria.js" />
+    <Content Include="pages\tesoreria\recibos\impresion\image\logo2.png" />
+    <Content Include="pages\tesoreria\recibos\impresion\recibo_pago.aspx" />
+    <Content Include="pages\tesoreria\recibos\impresion\css\cotiza.css" />
     <Content Include="pruebaeventos.aspx" />
     <Content Include="vertical-light\index.html" />
     <Content Include="vertical-light\pages\apps\calendar.html" />
@@ -1916,6 +1921,13 @@
     </Compile>
     <Compile Include="pages\tesoreria\cap_ingresos.aspx.designer.cs">
       <DependentUpon>cap_ingresos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\tesoreria\recibos\impresion\recibo_pago.aspx.cs">
+      <DependentUpon>recibo_pago.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\tesoreria\recibos\impresion\recibo_pago.aspx.designer.cs">
+      <DependentUpon>recibo_pago.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="pruebaeventos.aspx.cs">
@@ -2203,6 +2215,8 @@
     <Folder Include="pages\operacion\css\" />
     <Folder Include="pages\operacion\image\" />
     <Folder Include="pages\tesoreria\image\" />
+    <Folder Include="pages\tesoreria\recibos\pagos\" />
+    <Folder Include="temp\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

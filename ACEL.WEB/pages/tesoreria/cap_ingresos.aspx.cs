@@ -186,16 +186,16 @@ namespace ACEL.WEB.pages.tesoreria
             switch (pTipo)
             {
                 case "BUSQUEDA":
-                    panConsulta.Visible = true;
-                    panDatos.Visible = false;
-                    btnConsulta.Visible = false;
-                    btnAlta.Visible = true;
+                    //panConsulta.Visible = true;
+                    panDatos.Visible = true;
+                    //btnConsulta.Visible = false;
+                    //btnAlta.Visible = true;
                     break;
                 case "DATOS":
-                    panConsulta.Visible = false;
+                    //panConsulta.Visible = false;
                     panDatos.Visible = true;
-                    btnConsulta.Visible = true;
-                    btnAlta.Visible = false;
+                    //btnConsulta.Visible = true;
+                    //btnAlta.Visible = false;
                     break;
             }
             //if (dtUsuario_VS.Rows[0]["Perfil"].ToString() == "ADMIN" && long.Parse(dtUsuario_VS.Rows[0]["Acceso"].ToString()) <= 2)
@@ -320,35 +320,48 @@ namespace ACEL.WEB.pages.tesoreria
             List<ENT.ACEL_CUENTA_INVERSIONISTAS> elAltaCRM2 = new List<ENT.ACEL_CUENTA_INVERSIONISTAS>();
             elAltaCRM2 = Busqueda(pAdmin);
             LlenarBusqueda(elAltaCRM2);
-            rptConfiguraciones.DataSource = dtBusqueda_VS;
-            rptConfiguraciones.DataBind();
+            //rptConfiguraciones.DataSource = dtBusqueda_VS;
+            //rptConfiguraciones.DataBind();
         }
         private void LimpiaDatos()
         {
             DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
+            txtMontoPago.Text = "";
             txtNom.Text = "";
-            txtCorreo.Text = "";
-            txtFecha1.Text = currentDateTime.ToShortDateString();
-            cmbStatusEvento.SelectedIndex = 0;
-            cmbTipoEvento.SelectedIndex = 0;
-            hfidRegistro.Value = "0";
+            txtFechaPago.Text = currentDateTime.ToShortDateString();
+            txtReferenciaPago.Text = "";
+            cmbTipoPago.SelectedIndex = 0;
+            cmbViaDeposito.SelectedIndex = 0;
+            lblNomInvers.Text = "Sin datos";
+            lblCveInvers.Text = "Sin datos";
         }
-        private void CargaCliente(long pidUsuario)
+        private void CargaInversionista(string pNombreInversionista)
         {
-            ACEL_CUENTA_INVERSIONISTAS eiCliente = new ACEL_CUENTA_INVERSIONISTAS();
-            eiCliente = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, pidUsuario);
-            if (eiCliente == null)
+            try
             {
-                MuestraMensaje("Error al cargar el usuario, contacte a sistemas");
-                return;
+                ACEL_CUENTA_INVERSIONISTAS eiCliente = new ACEL_CUENTA_INVERSIONISTAS();
+                eiCliente = new boACEL_CUENTA_INVERSIONISTAS().BuscarCve(1, 1, pNombreInversionista.Substring(0, pNombreInversionista.IndexOf("-") - 1).Trim().ToUpper());
+                lblNomInvers.Text = eiCliente.NomComercial.ToUpper();
+                lblCveInvers.Text = eiCliente.CveInversionista;
+                hfInversionista.Value = eiCliente.idInversionista.ToString();
             }
-            txtNom.Text = eiCliente.NomComercial;
+            catch
+            {
+                if (hfInversionista.Value != "0")
+                {
+                    return;
+                }
+                else
+                {
+                    MuestraMensaje("El inversionista seleccionado no existe");
+                    txtNom.Text = "";
+                    txtNom.Focus();
+                    hfInversionista.Value = "0";
+                    return;
+                }
 
-            txtFecha1.Text = eiCliente.FechaAlta.Value.ToShortDateString();
-            cmbStatusEvento.SelectedValue = eiCliente.Status;
-            cmbTipoEvento.SelectedValue = eiCliente.TipoInversionista;
-            txtCorreo.Text = eiCliente.CorreoContacto;
-            //imagen
+            }
+            txtNom.Text = pNombreInversionista;
 
         }
         private void LimpiaConsulta()
@@ -405,45 +418,33 @@ namespace ACEL.WEB.pages.tesoreria
         }
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
-
-            DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
-            ACEL_CUENTA_INVERSIONISTAS peiConfigura = new ACEL_CUENTA_INVERSIONISTAS();
-            if (hfidRegistro.Value == "0")
+            DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Parse(txtFechaPago.Text), TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
+            ACEL_CUENTA_INVERSIONISTAS_PAGOS eiPago = new ACEL_CUENTA_INVERSIONISTAS_PAGOS();
+            ACEL_CUENTA_INVERSIONISTAS eiInversionista = new ACEL_CUENTA_INVERSIONISTAS();
+            eiInversionista = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, long.Parse(hfInversionista.Value));
+            if (eiInversionista != null)
             {
-                peiConfigura.idBranch = 1;
-                peiConfigura.idCuenta = 1;
-                peiConfigura.NomComercial = txtNom.Text;
-                peiConfigura.TipoInversionista = cmbTipoEvento.SelectedValue;
-                peiConfigura.CorreoContacto = txtCorreo.Text;
-                peiConfigura.FechaAlta = DateTime.Parse(txtFecha1.Text);
-                peiConfigura.FechaMod = currentDateTime;
-                peiConfigura.UsuAlta = "";
-                peiConfigura.UsuMod = "";
-                peiConfigura.Status = cmbStatusEvento.SelectedValue;
-                long pidEvento = new boACEL_CUENTA_INVERSIONISTAS().Inserta(peiConfigura);
-                if (pidEvento > 0)
+                eiPago.idBranch = 1;
+                eiPago.idCuenta = 1;
+                eiPago.idInversionista = eiInversionista.idInversionista;
+                eiPago.CveInversionista = eiInversionista.CveInversionista;
+                eiPago.MontoPago = decimal.Parse(txtMontoPago.Text);
+                eiPago.FechaPago = currentDateTime;
+                eiPago.ViaDeposito = cmbViaDeposito.SelectedValue;
+                eiPago.ReferenciaPago = txtReferenciaPago.Text.ToUpper();
+                eiPago.TipoPago = cmbTipoPago.SelectedValue;
+                eiPago.FechaAlta = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
+                eiPago.FechaMod = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
+                eiPago.Status = "ACTIVO";
+                long midPago = new boACEL_CUENTA_INVERSIONISTAS_PAGOS().Inserta(eiPago);
+                if(midPago > 0)
                 {
-                    MuestraMensaje("El registro se dió de alta correctamente");
-                }
-                //peiConfigura.TipoUsuario = cmbTipo.SelectedValue;
-            }
-            else
-            {
-                peiConfigura = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, long.Parse(hfidRegistro.Value));
-                peiConfigura.NomComercial = txtNom.Text;
-                peiConfigura.TipoInversionista = cmbTipoEvento.SelectedValue;
-                peiConfigura.CorreoContacto = txtCorreo.Text;
-                peiConfigura.FechaAlta = DateTime.Parse(txtFecha1.Text);
-                peiConfigura.FechaMod = currentDateTime;
-                peiConfigura.UsuMod = "";
-                peiConfigura.Status = cmbStatusEvento.SelectedValue;
-                if (new boACEL_CUENTA_INVERSIONISTAS().Actualiza(peiConfigura))
-                {
-                    MuestraMensaje("El registro se modificó correctamente");
+                    LimpiaDatos();
+                    Session["pInversionista"] = eiInversionista.idInversionista;
+                    Session["pPago"] = midPago;
+                    Response.Redirect("~/pages/tesoreria/recibos/impresion/recibo_pago.aspx");
                 }
             }
-            PresentaGridBusqueda(true);
-            TipoAmbiente("BUSQUEDA");
         }
         protected void rptConfiguraciones_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -453,10 +454,10 @@ namespace ACEL.WEB.pages.tesoreria
             if (e.CommandName == "ver")
             {
                 LimpiaDatos();
-                hfidRegistro.Value = hf.Value;
+                //hfidRegistro.Value = hf.Value;
                 TipoAmbiente("DATOS");
                 //ltrTipoOperacion.Text = "Editando el usuario " + hf.Value;
-                CargaCliente(long.Parse(hf.Value));
+                //CargaCliente(long.Parse(hf.Value));
             }
 
             //if (e.CommandName == "elimina")
@@ -546,6 +547,52 @@ namespace ACEL.WEB.pages.tesoreria
                 LlenarPagos(eiCot);
                 rptPartidas.DataSource = dtPagos_VS;
                 rptPartidas.DataBind();
+            }
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static List<string> BuscaInversionista(string prefixText, int count)
+        {
+            List<string> Claves = new List<string>();
+            List<ACEL_CUENTA_INVERSIONISTAS> elClaves = new List<ACEL_CUENTA_INVERSIONISTAS>();
+            // Suponiendo que contextKey es una cadena que usas para filtrar los resultados
+            elClaves = new boACEL_CUENTA_INVERSIONISTAS().Buscar(1, 1);
+            if (elClaves != null && elClaves.Count > 0)
+            {
+                Claves = (from Spv in elClaves
+                          where Spv.CveInversionista.ToUpper().Contains(prefixText.ToUpper()) || Spv.NomComercial.ToString().ToUpper().Contains(prefixText.ToUpper())
+                          select Spv.CveInversionista.ToString() + " - " + Spv.NomComercial).Distinct().ToList();
+            }
+            return Claves;
+        }
+
+        protected void txtNom_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNom.Text != "")
+            {
+                try
+                {
+                    ACEL_CUENTA_INVERSIONISTAS eiCliente = new ACEL_CUENTA_INVERSIONISTAS();
+                    eiCliente = new boACEL_CUENTA_INVERSIONISTAS().BuscarNombre(1, 1, txtNom.Text);
+                    if (eiCliente != null)
+                    {
+                        lblCveInvers.Text = eiCliente.CveInversionista;
+                        lblNomInvers.Text = eiCliente.NomComercial.ToUpper();
+                        hfInversionista.Value = eiCliente.idInversionista.ToString();
+                    }
+                    else
+                    {
+                        CargaInversionista(txtNom.Text);
+                    }
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            else {
+                LimpiaDatos();
             }
         }
     }
