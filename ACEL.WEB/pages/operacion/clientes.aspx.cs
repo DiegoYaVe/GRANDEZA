@@ -160,7 +160,7 @@ namespace ACEL.WEB.pages.operacion
             //{
 
             //CargaCombosClientes();
-            PresentaGridBusqueda(true);
+            //PresentaGridBusqueda(true);
             //btnAlta.Visible = true;
             //btnGuardar.Visible = true;
             //txtUsuario.Visible = true;
@@ -178,7 +178,7 @@ namespace ACEL.WEB.pages.operacion
             //panDatosSirscom.Visible = false;
 
             //}
-            TipoAmbiente("BUSQUEDA");
+            //TipoAmbiente("BUSQUEDA");
             CargaComboClientes();
             CargaComboEventos();
             //SessionTimeoutLiteral.Text = "<script type='text/javascript'>sessionTimeout = " + (Session.Timeout * 60) + ";</script>";
@@ -190,15 +190,15 @@ namespace ACEL.WEB.pages.operacion
                 case "BUSQUEDA":
                     panConsulta.Style["display"] = "block"; // ✅ Se muestra el panel de búsqueda
                     panDatos.Style["display"] = "none"; // ❌ Se oculta el de datos
-                    btnConsulta.Style["display"] = "none";
-                    btnAlta.Style["display"] = "block";
+                    //btnConsulta.Style["display"] = "none";
+                    //btnAlta.Style["display"] = "block";
                     break;
 
                 case "DATOS":
                     panConsulta.Style["display"] = "none"; // ❌ Se oculta el panel de búsqueda
                     panDatos.Style["display"] = "block"; // ✅ Se muestra el panel de datos
-                    btnConsulta.Style["display"] = "block";
-                    btnAlta.Style["display"] = "none";
+                    //btnConsulta.Style["display"] = "block";
+                    //btnAlta.Style["display"] = "none";
                     break;
             }
         }
@@ -351,16 +351,18 @@ namespace ACEL.WEB.pages.operacion
 
             dtBusqueda_VS = dt;
         }
-        private void PresentaGridBusqueda(bool pAdmin)
+        private String PresentaGridBusqueda(bool pAdmin)
         {
             dtBusqueda = new DataTable();
             CrearTablaBusqueda();
             List<ENT.ACEL_CUENTA_INVERSIONISTAS> elAltaCRM2 = new List<ENT.ACEL_CUENTA_INVERSIONISTAS>();
             elAltaCRM2 = Busqueda(pAdmin);
             LlenarBusqueda(elAltaCRM2);
-            HiddenFieldData.Value = DataTableToJson(dtBusqueda_VS);
-            rptConfiguraciones.DataSource = dtBusqueda_VS;
-            rptConfiguraciones.DataBind();
+            //HiddenFieldData.Value = DataTableToJson(dtBusqueda_VS);
+            String dataJson = DataTableToJson(dtBusqueda_VS);
+            //rptConfiguraciones.DataSource = dtBusqueda_VS;
+            //rptConfiguraciones.DataBind();
+            return dataJson;
         }
         private string DataTableToJson(DataTable dt)
         {
@@ -392,6 +394,7 @@ namespace ACEL.WEB.pages.operacion
         }
         private void CargaCliente(long pidUsuario)
         {
+            /*
             ACEL_CUENTA_INVERSIONISTAS eiCliente = new ACEL_CUENTA_INVERSIONISTAS();
             eiCliente = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, pidUsuario);
             if (eiCliente == null)
@@ -411,9 +414,9 @@ namespace ACEL.WEB.pages.operacion
             try { cmbEventos.SelectedValue = eiCliente.idEvento.ToString(); }
             catch { cmbEventos.SelectedIndex = 0; }
             hfidRegistro.Value = eiCliente.idInversionista.ToString();
-            txtCertificados.Text = eiCliente.CantidadCertificados.ToString();
-
-            long certificados = long.Parse(txtCertificados.Text);
+            //txtCertificado.Text = eiCliente.CantidadCertificados.ToString();
+            long certificados = 0;
+            //long certificados = long.Parse(txtCertificado.Text);
             string tipoPago = cmbTipoPago.SelectedItem.Text;
             string pTipoEscala;
 
@@ -488,6 +491,7 @@ namespace ACEL.WEB.pages.operacion
             LlenarTablaPagos(pidUsuario, eiEscala);
             rptPagos.DataSource = dtPagos_VS;
             rptPagos.DataBind();
+            */
         }
         private void CargaComboClientes()
         {
@@ -562,10 +566,6 @@ namespace ACEL.WEB.pages.operacion
 
             if (!IsPostBack)
             {
-                if (Session["User"] != null)
-                {
-                    Session.Timeout = 20; // Reinicia el tiempo de espera de la sesión
-                }
                 Inicio();
                 //if (dtUsuario_VS.Rows[0]["Perfil"].ToString() == "ADMIN")
                 //{
@@ -578,8 +578,8 @@ namespace ACEL.WEB.pages.operacion
                 //    panMenuUsuario.Visible = true;
                 //    PresentaRPTMenu();
                 //}
-                panConsulta.Style["display"] = "block";
-                panDatos.Style["display"] = "none";
+                //panConsulta.Style["display"] = "block";
+                //panDatos.Style["display"] = "none";
             }
         }
         protected void lnkSalir_Click(object sender, EventArgs e)
@@ -591,23 +591,29 @@ namespace ACEL.WEB.pages.operacion
         }
         protected void btnAlta_Click(object sender, EventArgs e)
         {
-            LimpiaDatos();
-            TipoAmbiente("DATOS");
+            //LimpiaDatos();
+            //TipoAmbiente("DATOS");
             //ltrTipoOperacion.Text = "Alta de Usuario";
-            Session.Timeout = 20;
+            //Session.Timeout = 20;
         }
+        /*
         protected void btnConsulta_Click(object sender, EventArgs e)
         {
             TipoAmbiente("BUSQUEDA");
             Session.Timeout = 20;
+
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "OcultarDetallesConsulta", "OcultarDetallesConsulta();", true);
         }
+        */
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
             DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
             ACEL_CUENTA_INVERSIONISTAS peiConfigura = new ACEL_CUENTA_INVERSIONISTAS();
 
-            long certificados = long.Parse(txtCertificados.Text);
+            long certificados = 0;
+            //long certificados = long.Parse(txtCertificado.Text);
+
             string tipoPago = cmbTipoPago.SelectedItem.Text;
             string pTipoEscala;
 
@@ -689,7 +695,8 @@ namespace ACEL.WEB.pages.operacion
                 peiConfigura.Cliente = cmbCliente.SelectedValue;
                 peiConfigura.CorreoContacto = txtCorreo.Text;
                 peiConfigura.TelContacto = txtTelefono.Text;
-                peiConfigura.CantidadCertificados = long.Parse(txtCertificados.Text);
+                //peiConfigura.CantidadCertificados = long.Parse(txtCertificado.Text);
+                peiConfigura.CantidadCertificados = 0;
                 peiConfigura.TipoInversionista = cmbInversionista.SelectedValue;
                 peiConfigura.idEvento = long.Parse(cmbEventos.SelectedValue);
                 peiConfigura.NombreEvento = cmbEventos.SelectedItem.Text;
@@ -715,7 +722,8 @@ namespace ACEL.WEB.pages.operacion
                 peiConfigura.Cliente = cmbCliente.SelectedValue;
                 peiConfigura.CorreoContacto = txtCorreo.Text;
                 peiConfigura.TelContacto = txtTelefono.Text;
-                peiConfigura.CantidadCertificados = long.Parse(txtCertificados.Text);
+                //peiConfigura.CantidadCertificados = long.Parse(txtCertificado.Text);
+                peiConfigura.CantidadCertificados = 0;
                 peiConfigura.TipoInversionista = cmbInversionista.SelectedValue;
                 peiConfigura.idEvento = long.Parse(cmbEventos.SelectedValue);
                 peiConfigura.idEscala = eiEscala.idEscala;
@@ -756,7 +764,7 @@ namespace ACEL.WEB.pages.operacion
             if (dtUsuario_VS.Rows[0]["Perfil"].ToString() == "ADMIN" && long.Parse(dtUsuario_VS.Rows[0]["Acceso"].ToString()) <= 2)
             {
                 //CargaCombosClientes();
-                PresentaGridBusqueda(true);
+                //PresentaGridBusqueda(true);
                 //btnAlta.Visible = true;
                 //btnGuardar.Visible = true;
                 //txtUsuario.Visible = true;
@@ -765,7 +773,7 @@ namespace ACEL.WEB.pages.operacion
             }
             else
             {
-                PresentaGridBusqueda(false);
+                //PresentaGridBusqueda(false);
                 //btnAlta.Visible = false;
                 //btnConsulta.Visible = false;
                 //btnGuardar.Visible = true;
@@ -817,8 +825,10 @@ namespace ACEL.WEB.pages.operacion
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod()]
-        public static string FiltrarInversionistas(string dataJson, string criterio, string orden)
+        public static string FiltrarInversionistas(string criterio, string orden)
         {
+            clientes clienteInstance = new clientes();
+            String dataJson = clienteInstance.PresentaGridBusqueda(true);
             JavaScriptSerializer serializer = new JavaScriptSerializer();
             List<Dictionary<string, object>> inversionistas = serializer.Deserialize<List<Dictionary<string, object>>>(dataJson);
 
@@ -880,7 +890,7 @@ namespace ACEL.WEB.pages.operacion
                     correo = inversionista.CorreoContacto,
                     telefono = inversionista.TelContacto,
                     evento = inversionista.idEvento,
-                    certificados = inversionista.CantidadCertificados,
+                    certificados = inversionista.CantidadCertificados.Value.ToString("N0"),
                     tipo = inversionista.TipoInversionista,
                     tipoTexto = tipoInversionistaTexto,
                     total = total.ToString("N2"),

@@ -60,24 +60,6 @@ namespace ACEL.WEB.pages.operacion
         protected global::System.Web.UI.WebControls.Literal ltrPantallaSecundaria;
 
         /// <summary>
-        /// Control btnConsulta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConsulta;
-
-        /// <summary>
-        /// Control btnAlta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAlta;
-
-        /// <summary>
         /// Control panConsulta.
         /// </summary>
         /// <remarks>
@@ -103,15 +85,6 @@ namespace ACEL.WEB.pages.operacion
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField HiddenFieldData;
-
-        /// <summary>
-        /// Control rptConfiguraciones.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptConfiguraciones;
 
         /// <summary>
         /// Control panDatos.
@@ -150,13 +123,13 @@ namespace ACEL.WEB.pages.operacion
         protected global::System.Web.UI.WebControls.TextBox txtTelefono;
 
         /// <summary>
-        /// Control txtCertificados.
+        /// Control txtCertificado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCertificados;
+        protected global::System.Web.UI.WebControls.TextBox txtCertificado;
 
         /// <summary>
         /// Control cmbCliente.

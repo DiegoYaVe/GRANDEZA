@@ -1,0 +1,92 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|c:\\users\\diego\\onedrive\\documentos\\hw consulting\\new\\acel\\acel.web\\pages\\operacion\\clientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|solutionrelative:acel.web\\pages\\operacion\\clientes.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\acel.web\\pages\\operacion\\clientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|solutionrelative:acel.web\\pages\\operacion\\clientes.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\acel.web\\pages\\operacion\\js\\operacion.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|solutionrelative:acel.web\\pages\\operacion\\js\\operacion.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|c:\\users\\diego\\onedrive\\documentos\\hw consulting\\new\\acel\\acel.web\\pages\\operacion\\clientes.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|solutionrelative:acel.web\\pages\\operacion\\clientes.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "clientes.aspx.designer.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAADwv3cAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T06:18:48.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "clientes.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
+              "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
+              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
+              "ViewState": "AgIAAK0CAAAAAAAAAAAEwF8CAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-13T01:23:16.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "operacion.js",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\js\\operacion.js",
+              "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\js\\operacion.js",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\js\\operacion.js",
+              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\js\\operacion.js",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAuwLUAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-02-13T01:27:58.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "clientes.aspx",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx",
+              "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\clientes.aspx",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx",
+              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-02-13T01:23:09.021Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

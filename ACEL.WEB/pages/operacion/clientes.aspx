@@ -482,12 +482,14 @@
                                         <nav aria-label="breadcrumb">
                                             <ol class="breadcrumb">
                                                 <li class="">
+                                                    <%-- 
                                                     <asp:Button ID="btnConsulta" runat="server" Text="Regresar" CausesValidation="false"
                                                         CssClass="btn btn-info btn-fw" OnClick="btnConsulta_Click" formnovalidate />
+                                                     --%>
+                                                    <button onClick="backStep()" id="btnConsulta" class="btn btn-info btn-fw">Regresar</button>
                                                 </li>
                                                 <li class="">
-                                                    <asp:Button ID="btnAlta" runat="server" Text="Alta"
-                                                        CssClass="btn btn-info btn-fw" OnClick="btnAlta_Click" />
+                                                     <button id="btnAlta" onClick="darAlta()" class="btn btn-info btn-fw">Alta</button>
                                                 </li>
                                             </ol>
                                         </nav>
@@ -504,7 +506,7 @@
                                                     <option value="F10">Evento F10</option>
                                                 </select>
                                             </label>
-                                            <button type="button" id="btnFiltrar" class="btn btn-info btn-sm">Filtrar</button>
+                                            <button type="button" onclick="filterClientes()" id="btnFiltrar" class="btn btn-info btn-sm">Filtrar</button>
                                         </div>
                                         <div class="table-responsive">
                                             <table class="table">
@@ -520,6 +522,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tablaInversionistas">
+                                                    <%-- 
                                                     <asp:Repeater ID="rptConfiguraciones" runat="server" OnItemCommand="rptConfiguraciones_ItemCommand">
                                                         <ItemTemplate>
                                                             
@@ -547,6 +550,7 @@
                                                             <asp:HiddenField ID="hfid" runat="server" Value='<%# Eval("id") %>' />
                                                         </ItemTemplate>
                                                     </asp:Repeater>
+                                                        --%>
                                                 </tbody>
 
                                             </table>
@@ -595,7 +599,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label">No. Certificados</label>
                                                                     <div class="col-sm-8">
-                                                                        <asp:TextBox runat="server" ValidationGroup="form" ID="txtCertificados" CssClass="form-control form-control-sm" required></asp:TextBox>
+                                                                        <asp:TextBox runat="server" ValidationGroup="form" ID="txtCertificado" CssClass="form-control form-control-sm" required></asp:TextBox>
                                                                        <%-- <asp:RequiredFieldValidator SetFocusOnError="true" ID="RequiredFieldValidator3" runat="server" ForeColor="Red" Font-Size="Medium"
                                                                         ControlToValidate="txtCertificados" Display="Dynamic" ValidationGroup="form">
                                                                         *</asp:RequiredFieldValidator>
