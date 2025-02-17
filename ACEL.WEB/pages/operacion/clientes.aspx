@@ -493,6 +493,8 @@
                                                 </li>
                                             </ol>
                                         </nav>
+                                                                                <input type="text" id="hfidRegister" name="hfidRegister" value="0">
+
                                     </div>
                                     <asp:Panel ID="panConsulta" runat="server" CssClass="row" style="display: block;">
                                         <asp:HiddenField ID="hfidRegistro" runat="server" Value="0" />
@@ -614,9 +616,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-3 col-form-label">Tipo Cliente</label>
                                                                     <div class="col-sm-9">
-                                                                        <asp:DropDownList AutoPostBack="true" ID="cmbCliente" runat="server"
-                                                                            OnSelectedIndexChanged="cmbCliente_SelectedIndexChanged" CssClass="form-select">
-                                                                        </asp:DropDownList>
+                                                                       <select id="cmbCliente" class="form-select" onchange="llenarInversionistas(this.value);"></select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -624,9 +624,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-4 col-form-label">Tipo Inversionista</label>
                                                                     <div class="col-sm-8">
-                                                                        <asp:DropDownList ID="cmbInversionista" runat="server"
-                                                                             CssClass="form-select">
-                                                                        </asp:DropDownList>
+                                                                        <select id="cmbInversionista" class="form-select"></select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -636,9 +634,7 @@
                                                                 <div class="form-group row">
                                                                     <label class="col-sm-3 col-form-label">Evento</label>
                                                                     <div class="col-sm-9">
-                                                                        <asp:DropDownList  ID="cmbEventos" runat="server"
-                                                                             CssClass="form-select">
-                                                                        </asp:DropDownList>
+                                                                        <select id="cmbEventos" class="form-select"></select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -669,9 +665,7 @@
                                                             <div class="col-md-6">
                                                                 <div class="form-group row"> 
                                                                     <div class="col-sm-9">
-                                                                        <asp:Button runat="server" ValidationGroup="form" ID="btnGuardar" 
-                                                                            CssClass="form-control btn-gradient-success"
-                                                                            OnClick="btnGuardar_Click" Text="Guardar" CausesValidation="true" />
+                                                                      <button id="btnGuardar" onClick="GuardarInversionista()" class="form-control btn-gradient-success">Guardar</button>
                                                                     </div>
                                                                 </div>
                                                             </div>

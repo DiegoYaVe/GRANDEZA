@@ -12,6 +12,8 @@ using System.Text;
 using System.Web.Security;
 using ACEL.BO.bo;
 using System.Web.Script.Serialization;
+using static Microsoft.IO.RecyclableMemoryStreamManager;
+using System.Configuration;
 
 namespace ACEL.WEB.pages.operacion
 {
@@ -179,8 +181,8 @@ namespace ACEL.WEB.pages.operacion
 
             //}
             //TipoAmbiente("BUSQUEDA");
-            CargaComboClientes();
-            CargaComboEventos();
+            //CargaComboClientes();
+            //CargaComboEventos();
             //SessionTimeoutLiteral.Text = "<script type='text/javascript'>sessionTimeout = " + (Session.Timeout * 60) + ";</script>";
         }
         private void TipoAmbiente(string pTipo)
@@ -383,14 +385,7 @@ namespace ACEL.WEB.pages.operacion
         }
         private void LimpiaDatos()
         {
-            txtNom.Text = "";
-            txtCorreo.Text = "";
-            txtTelefono.Text = "";
-            cmbCliente.SelectedIndex = 0;
-            cmbInversionista.SelectedIndex = 0;
-            cmbTipoPago.SelectedIndex = 0;
-            cmbEventos.SelectedIndex = 0;
-            hfidRegistro.Value = "0";
+            
         }
         private void CargaCliente(long pidUsuario)
         {
@@ -495,34 +490,15 @@ namespace ACEL.WEB.pages.operacion
         }
         private void CargaComboClientes()
         {
-            cmbCliente.Items.Clear();
-            List<ACEL_CUENTA_INDICES> elIndices = new List<ACEL_CUENTA_INDICES>();
-            elIndices = new boACEL_INDICES().BuscarIndice(1, 1, 1);
-            foreach (ACEL_CUENTA_INDICES eiIndice in elIndices)
-            {
-                cmbCliente.Items.Add(new ListItem(eiIndice.Descripcion, eiIndice.idDetalle.ToString()));
-            }
-            CargaInversionista(long.Parse(cmbCliente.SelectedValue));
+            
         }
         private void CargaInversionista(long pidValorAsociado)
         {
-            cmbInversionista.Items.Clear();
-            List<ACEL_CUENTA_INDICES> elIndices = new List<ACEL_CUENTA_INDICES>();
-            elIndices = new boACEL_INDICES().BuscarValorAsociado(1, 1, pidValorAsociado);
-            foreach (ACEL_CUENTA_INDICES eiIndice in elIndices)
-            {
-                cmbInversionista.Items.Add(new ListItem(eiIndice.Descripcion, eiIndice.idDetalle.ToString()));
-            }
+           
         }
         private void CargaComboEventos()
         {
-            cmbEventos.Items.Clear();
-            List<ACEL_CUENTA_EVENTOS> elEventos = new List<ACEL_CUENTA_EVENTOS>();
-            elEventos = new boACEL_CUENTA_EVENTOS().Buscar(1, 1);
-            foreach (ACEL_CUENTA_EVENTOS eiEvento in elEventos)
-            {
-                cmbEventos.Items.Add(new ListItem(eiEvento.NombreEvento, eiEvento.idEvento.ToString()));
-            }
+            
         }
         private void LimpiaConsulta()
         {
@@ -608,141 +584,6 @@ namespace ACEL.WEB.pages.operacion
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
 
-            DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
-            ACEL_CUENTA_INVERSIONISTAS peiConfigura = new ACEL_CUENTA_INVERSIONISTAS();
-
-            long certificados = 0;
-            //long certificados = long.Parse(txtCertificado.Text);
-
-            string tipoPago = cmbTipoPago.SelectedItem.Text;
-            string pTipoEscala;
-
-            if (certificados >= 1 && certificados <= 9)
-            {
-                pTipoEscala = "1-9 CONTADO";
-            }
-            else if (certificados == 10)
-            {
-                if (tipoPago == "CONTADO")
-                {
-                    pTipoEscala = "10 CONTADO";
-                }
-                else
-                {
-                    pTipoEscala = "10 MENSUALIDADES";
-                }
-            }
-            else if (certificados >= 11 && certificados <= 39)
-            {
-                if (tipoPago == "CONTADO")
-                {
-                    pTipoEscala = "11-39 CONTADO";
-                }
-                else
-                {
-                    pTipoEscala = "11-39 MENSUALIDADES";
-                }
-            }
-            else if (certificados == 40)
-            {
-                if (tipoPago == "CONTADO")
-                {
-                    pTipoEscala = "40 CONTADO";
-                }
-                else
-                {
-                    pTipoEscala = "40 MENSUALIDADES";
-                }
-            }
-            else if (certificados >= 41 && certificados <= 99)
-            {
-                if (tipoPago == "CONTADO")
-                {
-                    pTipoEscala = "41-99 CONTADO";
-                }
-                else
-                {
-                    pTipoEscala = "41-99 MENSUALIDADES";
-                }
-            }
-            else if (certificados >= 100)
-            {
-                if (tipoPago == "CONTADO")
-                {
-                    pTipoEscala = "+ de 100 CONTADO";
-                }
-                else
-                {
-                    pTipoEscala = "+ de 100 MENSUALIDADES";
-                }
-            }
-            else
-                pTipoEscala = "";
-            ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS eiEscala = new ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS();
-            eiEscala = new boACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS().BuscarEscalaPago(1, 1, long.Parse(cmbEventos.SelectedValue),
-                pTipoEscala, cmbInversionista.SelectedItem.Text);
-            if (eiEscala == null)
-            {
-                MuestraMensaje("Error al buscar la escala");
-                return;
-            }
-
-            if (hfidRegistro.Value == "0")
-            {
-                peiConfigura.idBranch = 1;
-                peiConfigura.idCuenta = 1;
-                peiConfigura.NomComercial = txtNom.Text;
-                peiConfigura.Cliente = cmbCliente.SelectedValue;
-                peiConfigura.CorreoContacto = txtCorreo.Text;
-                peiConfigura.TelContacto = txtTelefono.Text;
-                //peiConfigura.CantidadCertificados = long.Parse(txtCertificado.Text);
-                peiConfigura.CantidadCertificados = 0;
-                peiConfigura.TipoInversionista = cmbInversionista.SelectedValue;
-                peiConfigura.idEvento = long.Parse(cmbEventos.SelectedValue);
-                peiConfigura.NombreEvento = cmbEventos.SelectedItem.Text;
-                peiConfigura.CondicionesPago = cmbTipoPago.SelectedValue;
-                peiConfigura.idEscala = eiEscala.idEscala;
-                peiConfigura.FechaAlta = currentDateTime;
-                peiConfigura.FechaMod = currentDateTime;
-                peiConfigura.UsuAlta = dtUsuario_VS.Rows[0]["CveUsuario"].ToString();
-                peiConfigura.UsuMod = dtUsuario_VS.Rows[0]["CveUsuario"].ToString();
-                peiConfigura.Status = "ACTIVO";
-                long pidEvento = new boACEL_CUENTA_INVERSIONISTAS().Inserta(peiConfigura);
-                if (pidEvento > 0)
-                {
-                    hfidRegistro.Value = pidEvento.ToString();
-                    MuestraMensaje("El registro se dió de alta correctamente");
-                }
-                //peiConfigura.TipoUsuario = cmbTipo.SelectedValue;
-            }
-            else
-            {
-                peiConfigura = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, long.Parse(hfidRegistro.Value));
-                peiConfigura.NomComercial = txtNom.Text;
-                peiConfigura.Cliente = cmbCliente.SelectedValue;
-                peiConfigura.CorreoContacto = txtCorreo.Text;
-                peiConfigura.TelContacto = txtTelefono.Text;
-                //peiConfigura.CantidadCertificados = long.Parse(txtCertificado.Text);
-                peiConfigura.CantidadCertificados = 0;
-                peiConfigura.TipoInversionista = cmbInversionista.SelectedValue;
-                peiConfigura.idEvento = long.Parse(cmbEventos.SelectedValue);
-                peiConfigura.idEscala = eiEscala.idEscala;
-                peiConfigura.NombreEvento = cmbEventos.SelectedItem.Text;
-                peiConfigura.CondicionesPago = cmbTipoPago.SelectedValue;
-                peiConfigura.FechaMod = currentDateTime;
-                peiConfigura.UsuMod = dtUsuario_VS.Rows[0]["CveUsuario"].ToString();
-                if (new boACEL_CUENTA_INVERSIONISTAS().Actualiza(peiConfigura))
-                {
-                    MuestraMensaje("El registro se modificó correctamente");
-                }
-            }
-            PresentaGridBusqueda(true);
-            CargaTotalPagos(eiEscala, certificados);
-            CreaTablaPagos();
-            LlenarTablaPagos(long.Parse(hfidRegistro.Value), eiEscala);
-            rptPagos.DataSource = dtPagos_VS;
-            rptPagos.DataBind();
-            //TipoAmbiente("BUSQUEDA");
         }
         protected void rptConfiguraciones_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -820,7 +661,7 @@ namespace ACEL.WEB.pages.operacion
 
         protected void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargaInversionista(long.Parse(cmbCliente.SelectedValue));
+            //CargaInversionista(long.Parse(cmbCliente.SelectedValue));
         }
 
         [System.Web.Script.Services.ScriptMethod()]
@@ -849,6 +690,139 @@ namespace ACEL.WEB.pages.operacion
             }
 
             return serializer.Serialize(inversionistas);
+        }
+
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static bool GuardarInversionista(string pidRegistro, string pNom, string pCliente, string pCorreo, string pTelefono, string pCertificado, string pidInversionista, string pInversionista, string pidEventos, string pEventos, string pTipoPago, string pCveUsuario)
+        {
+            bool flagStatus = false;
+            DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
+            ACEL_CUENTA_INVERSIONISTAS peiConfigura = new ACEL_CUENTA_INVERSIONISTAS();
+
+            long certificados = long.Parse(pCertificado);
+
+            string tipoPago = pTipoPago;
+            string pTipoEscala;
+
+            if (certificados >= 1 && certificados <= 9)
+            {
+                pTipoEscala = "1-9 CONTADO";
+            }
+            else if (certificados == 10)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "10 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "10 MENSUALIDADES";
+                }
+            }
+            else if (certificados >= 11 && certificados <= 39)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "11-39 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "11-39 MENSUALIDADES";
+                }
+            }
+            else if (certificados == 40)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "40 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "40 MENSUALIDADES";
+                }
+            }
+            else if (certificados >= 41 && certificados <= 99)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "41-99 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "41-99 MENSUALIDADES";
+                }
+            }
+            else if (certificados >= 100)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "+ de 100 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "+ de 100 MENSUALIDADES";
+                }
+            }
+            else
+                pTipoEscala = "";
+            ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS eiEscala = new ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS();
+            eiEscala = new boACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS().BuscarEscalaPago(1, 1, long.Parse(pidEventos),
+                pTipoEscala, pInversionista);
+            if (eiEscala == null)
+            {
+                return false; //Error al buscar la escala
+            }
+
+            if (pidRegistro == "0")
+            {
+                peiConfigura.idBranch = 1;
+                peiConfigura.idCuenta = 1;
+                peiConfigura.NomComercial = pNom;
+                peiConfigura.Cliente = pCliente;
+                peiConfigura.CorreoContacto = pCorreo;
+                peiConfigura.TelContacto = pTelefono;
+                peiConfigura.CantidadCertificados = long.Parse(pCertificado);
+                peiConfigura.TipoInversionista = pidInversionista;
+                peiConfigura.idEvento = long.Parse(pidEventos);
+                peiConfigura.NombreEvento = pEventos;
+                peiConfigura.CondicionesPago = pTipoPago;
+                peiConfigura.idEscala = eiEscala.idEscala;
+                peiConfigura.FechaAlta = currentDateTime;
+                peiConfigura.FechaMod = currentDateTime;
+                peiConfigura.UsuAlta = pCveUsuario;
+                peiConfigura.UsuMod = pCveUsuario;
+                peiConfigura.Status = "ACTIVO";
+                long pidEvento = new boACEL_CUENTA_INVERSIONISTAS().Inserta(peiConfigura);
+                if (pidEvento > 0)
+                {
+                    flagStatus = true; //El registro se dió de alta correctamente
+                }
+                //peiConfigura.TipoUsuario = cmbTipo.SelectedValue;
+            }
+            else
+            {
+                peiConfigura = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, long.Parse(pidRegistro));
+                peiConfigura.NomComercial = pNom;
+                peiConfigura.Cliente = pCliente;
+                peiConfigura.CorreoContacto = pCorreo;
+                peiConfigura.TelContacto = pTelefono;
+                peiConfigura.CantidadCertificados = long.Parse(pCertificado);
+                peiConfigura.TipoInversionista = pidInversionista;
+                peiConfigura.idEvento = long.Parse(pidEventos);
+                peiConfigura.idEscala = eiEscala.idEscala;
+                peiConfigura.NombreEvento = pEventos;
+                peiConfigura.CondicionesPago = pTipoPago;
+                peiConfigura.FechaMod = currentDateTime;
+                peiConfigura.UsuMod = pCveUsuario; //ID DEL USUARIO QUE EDITA
+                if (new boACEL_CUENTA_INVERSIONISTAS().Actualiza(peiConfigura))
+                {
+                    flagStatus = true; //El registro se modificó correctamente
+                }
+            }
+
+            return flagStatus;
         }
 
         [System.Web.Script.Services.ScriptMethod()]
@@ -896,7 +870,9 @@ namespace ACEL.WEB.pages.operacion
                     total = total.ToString("N2"),
                     anticipo = anticipo.ToString("N2"),
                     enganche = enganche.ToString("N2"),
-                    pagos = pagos
+                    pagos = pagos,
+                    cliente = inversionista.Cliente,
+                    tipoPago = inversionista.CondicionesPago,
                 };
 
                 Console.WriteLine("Estado de cuenta generado correctamente:", datos); // DEBUG
@@ -973,6 +949,49 @@ namespace ACEL.WEB.pages.operacion
 
         }
 
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static List<ListItem> llenarInversionistas(string pCliente)
+        {
+
+            List<ACEL_CUENTA_INDICES> elIndices = new List<ACEL_CUENTA_INDICES>();
+            elIndices = new boACEL_INDICES().BuscarValorAsociado(1, 1, long.Parse(pCliente));
+            List<ListItem> inversionistas = new List<ListItem>();
+            foreach (ACEL_CUENTA_INDICES eiCont in elIndices)
+            {
+                inversionistas.Add(new ListItem(eiCont.Descripcion, eiCont.idDetalle.ToString()));
+            }
+            return inversionistas;
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static List<ListItem> llenarClientes()
+        {
+
+            List<ACEL_CUENTA_INDICES> elIndices = new List<ACEL_CUENTA_INDICES>();
+            elIndices = new boACEL_INDICES().BuscarIndice(1, 1, 1);
+            List<ListItem> clientes = new List<ListItem>();
+            foreach (ACEL_CUENTA_INDICES eiCont in elIndices)
+            {
+                clientes.Add(new ListItem(eiCont.Descripcion, eiCont.idDetalle.ToString()));
+            }
+            return clientes;
+        }
+
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static List<ListItem> llenarEvento()
+        {
+            List<ACEL_CUENTA_EVENTOS> elEventos = new List<ACEL_CUENTA_EVENTOS>();
+            elEventos = new boACEL_CUENTA_EVENTOS().Buscar(1, 1);
+            List<ListItem> eventos = new List<ListItem>();
+            foreach (ACEL_CUENTA_EVENTOS eiEvento in elEventos)
+            {
+                eventos.Add(new ListItem(eiEvento.NombreEvento, eiEvento.idEvento.ToString()));
+            }
+            return eventos;
+        }
 
     }
 

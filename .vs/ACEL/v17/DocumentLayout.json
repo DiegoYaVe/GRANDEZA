@@ -15,7 +15,15 @@
       "RelativeMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|solutionrelative:acel.web\\pages\\operacion\\js\\operacion.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|c:\\users\\diego\\onedrive\\documentos\\hw consulting\\new\\acel\\acel.web\\pages\\operacion\\clientes.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{AF2E95C7-44A1-467F-A7D4-CB0BBB21E5B7}|ACEL.BO\\ACEL.BO.csproj|c:\\users\\diego\\onedrive\\documentos\\hw consulting\\new\\acel\\acel.bo\\bo\\boacel_cuenta_indices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF2E95C7-44A1-467F-A7D4-CB0BBB21E5B7}|ACEL.BO\\ACEL.BO.csproj|solutionrelative:acel.bo\\bo\\boacel_cuenta_indices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7FB37C1F-55EC-422C-A298-2FD4E51E72DC}|ACEL.ENT\\ACEL.ENT.csproj|c:\\users\\diego\\onedrive\\documentos\\hw consulting\\new\\acel\\acel.ent\\configuraciones\\configuraconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7FB37C1F-55EC-422C-A298-2FD4E51E72DC}|ACEL.ENT\\ACEL.ENT.csproj|solutionrelative:acel.ent\\configuraciones\\configuraconexion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\acel.web\\pages\\operacion\\clientes.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C738334F-0EFC-43BA-B952-28B84FEDD2FD}|ACEL.WEB\\ACEL.WEB.csproj|solutionrelative:acel.web\\pages\\operacion\\clientes.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,15 +42,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "clientes.aspx.designer.cs",
-              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
-              "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
-              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
-              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAADwv3cAAAArAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ConfiguraConexion.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.ENT\\Configuraciones\\ConfiguraConexion.cs",
+              "RelativeDocumentMoniker": "ACEL.ENT\\Configuraciones\\ConfiguraConexion.cs",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.ENT\\Configuraciones\\ConfiguraConexion.cs",
+              "RelativeToolTip": "ACEL.ENT\\Configuraciones\\ConfiguraConexion.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAYwAsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-14T06:18:48.957Z",
+              "WhenOpened": "2025-02-15T02:58:00.301Z",
               "EditorCaption": ""
             },
             {
@@ -51,9 +59,9 @@
               "Title": "clientes.aspx.cs",
               "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
               "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
-              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
-              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx.cs",
-              "ViewState": "AgIAAK0CAAAAAAAAAAAEwF8CAAAhAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.cs*",
+              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx.cs*",
+              "ViewState": "AgIAAFoBAAAAAAAAAAAgwIMBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-13T01:23:16.395Z",
               "EditorCaption": ""
@@ -66,9 +74,22 @@
               "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\js\\operacion.js",
               "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\js\\operacion.js",
               "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\js\\operacion.js",
-              "ViewState": "AgIAAKgAAAAAAAAAAAAuwLUAAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAACwAAAAAAAAAAAAgwCQAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
               "WhenOpened": "2025-02-13T01:27:58.031Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "boACEL_CUENTA_INDICES.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.BO\\bo\\boACEL_CUENTA_INDICES.cs",
+              "RelativeDocumentMoniker": "ACEL.BO\\bo\\boACEL_CUENTA_INDICES.cs",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.BO\\bo\\boACEL_CUENTA_INDICES.cs",
+              "RelativeToolTip": "ACEL.BO\\bo\\boACEL_CUENTA_INDICES.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAApwEIAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-15T07:12:44.669Z",
               "EditorCaption": ""
             },
             {
@@ -82,6 +103,19 @@
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
               "WhenOpened": "2025-02-13T01:23:09.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "clientes.aspx.designer.cs",
+              "DocumentMoniker": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "RelativeDocumentMoniker": "ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "ToolTip": "C:\\Users\\diego\\OneDrive\\Documentos\\HW CONSULTING\\NEW\\ACEL\\ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "RelativeToolTip": "ACEL.WEB\\pages\\operacion\\clientes.aspx.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwv5gAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-14T06:18:48.957Z",
               "EditorCaption": ""
             }
           ]

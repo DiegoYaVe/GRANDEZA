@@ -86,6 +86,28 @@ namespace ACEL.BO.bo
             return elACEL_RG;
         }
 
+        public List<ACEL_CUENTA_INDICES> BuscarValorAsociadoDetalle(long pidBranch, long pidCuenta, long pidValorAsociado)
+        {
+            List<ACEL_CUENTA_INDICES> elACEL_RG = new List<ACEL_CUENTA_INDICES>();
+            if (TestConnection())
+            {
+                try
+                {
+                    elACEL_RG = (from spc in dcACEL.ACEL_CUENTA_INDICES
+                                 where spc.Status == "ACTIVO"
+                                 && spc.idBranch == pidBranch
+                                 && spc.idCuenta == pidCuenta
+                                 && spc.ValorAsociado == pidValorAsociado
+                                 select spc).ToList();
+                }
+                catch
+                {
+                    elACEL_RG = null;
+                }
+            }
+            return elACEL_RG;
+        }
+
         public List<ACEL_CUENTA_INDICES> Buscar(long pidBranch, long pidCuenta, DateTime pFechaInicio, DateTime pFechaFin)
         {
             List<ACEL_CUENTA_INDICES> elACEL_RG = new List<ACEL_CUENTA_INDICES>();

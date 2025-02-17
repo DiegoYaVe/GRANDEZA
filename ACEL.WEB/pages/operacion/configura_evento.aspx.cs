@@ -521,10 +521,10 @@ namespace ACEL.WEB.pages.operacion
         private void CargaInversionista(long pidValorAsociado)
         {
             //cmbInversionista.Items.Clear();
-            List<ACEL_CUENTA_INDICES> elIndices = new List<ACEL_CUENTA_INDICES>();
-            elIndices = new boACEL_INDICES().BuscarValorAsociado(1, 1, pidValorAsociado);
-            rptEscalas.DataSource = elIndices;
-            rptEscalas.DataBind();
+            //List<ACEL_CUENTA_INDICES> elIndices = new List<ACEL_CUENTA_INDICES>();
+            //elIndices = new boACEL_INDICES().BuscarValorAsociado(1, 1, pidValorAsociado);
+            //rptEscalas.DataSource = elIndices;
+            //rptEscalas.DataBind();
         }
         #endregion
 

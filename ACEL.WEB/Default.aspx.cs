@@ -111,7 +111,7 @@ namespace ACEL.WEB
             if (!IsPostBack)
             {
                 CrearEntidadUsuario();
-                LoadPayments();
+                //LoadPayments();
             }
 
         }

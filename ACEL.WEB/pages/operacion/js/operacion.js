@@ -21,6 +21,63 @@
             });
         }
 
+window.GuardarInversionista = function () {
+    console.log("Entra: GuardarInversionista");
+    var criterio = $("#sortingField").val();
+    var orden = "asc";
+
+    var pidRegistro = document.getElementById("hfidRegister").value;
+    var pNom = document.getElementById("txtNom").value;
+    var pCliente = document.getElementById("cmbCliente").value;
+    var pCorreo = document.getElementById("txtCorreo").value;
+    var pTelefono = document.getElementById("txtTelefono").value;
+    var pCertificado = document.getElementById("txtCertificado").value;
+
+    var cmbInversionista = document.getElementById("cmbInversionista");
+    var pidInversionista = cmbInversionista.value;
+    var pInversionista = cmbInversionista.options[cmbInversionista.selectedIndex].text;
+
+    //var pInversionista = document.getElementById("cmbInversionista").value;
+
+    var cmbEventos = document.getElementById("cmbEventos");
+    var pidEventos = cmbEventos.value; // Obtiene el valor (id del evento)
+    var pEventos = cmbEventos.options[cmbEventos.selectedIndex].text; // Obtiene el texto visible
+
+    var cmbTipoPago = document.getElementById("cmbTipoPago");
+    var pTipoPago = cmbTipoPago.options[cmbTipoPago.selectedIndex].text; // Obtiene el texto visible
+
+    var pCveUsuario = "22";
+
+    $.ajax({
+        type: "POST",
+        url: "clientes.aspx/GuardarInversionista",
+        data: JSON.stringify({
+            pidRegistro: pidRegistro,
+            pNom: pNom,
+            pCliente: pCliente,
+            pCorreo: pCorreo,
+            pTelefono: pTelefono,
+            pCertificado: pCertificado,
+            pidInversionista: pidInversionista,
+            pInversionista: pInversionista, 
+            pidEventos: pidEventos,
+            pEventos: pEventos,
+            pTipoPago: pTipoPago,
+            pCveUsuario: pCveUsuario
+        }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var inversionistas = JSON.parse(response.d);
+            actualizarTabla(inversionistas);
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error:", xhr.responseText);
+            alert("Error en la solicitud: " + xhr.responseText);
+        }
+    });
+}
+
         $("#btnFiltrar").click(function () {
             filterClientes();
         });
@@ -45,7 +102,8 @@
         }
 
 window.editarInversionista = function (idInversionista) {
-            console.log("Cargando inversionista con ID:", idInversionista);
+    console.log("Cargando inversionista con ID:", idInversionista);
+
             //mostrarDetallesConsulta();
             
             $.ajax({
@@ -56,7 +114,11 @@ window.editarInversionista = function (idInversionista) {
                 dataType: "json",
                 success: function (response) {
                     var inversionista = JSON.parse(response.d);
+                    document.getElementById("hfidRegister").value = inversionista.id;
                     mostrarDetallesInversionista(inversionista); // ✅ Cambia al panel de edición
+                    llenarClientes(inversionista.cliente);
+                    llenarEvento(inversionista.evento);
+                    llenarInversionistas(inversionista.cliente, inversionista.tipo);
                 },
                 error: function (xhr, status, error) {
                     console.error("Error al cargar inversionista:", xhr.responseText);
@@ -118,7 +180,7 @@ window.editarInversionista = function (idInversionista) {
             $("#txtTelefono").val(inversionista.telefono);
             $("#cmbEventos").val(inversionista.evento);
             $("#txtCertificado").val(inversionista.certificados);
-            $("#cmbInversionista").val(inversionista.tipo);
+            //$("#cmbInversionista").val(inversionista.tipo);
 }
 
 function limpiarDatos() {
@@ -133,6 +195,9 @@ function limpiarDatos() {
     window.darAlta = function () {
         mostrarDetallesConsulta();
         limpiarDatos();
+        llenarClientes(0, 0);
+        llenarEvento(0);
+        llenarInversionistas(0, 0)
     }
 
         function mostrarDatos(idInversionista) {
@@ -178,10 +243,104 @@ function limpiarDatos() {
             });
 }
 
-    //filterClientes();
-//ocultarDetallesConsulta();
-
 document.addEventListener("DOMContentLoaded", function () {
     filterClientes();
     ocultarDetallesConsulta();
 });
+
+function llenarInversionistas(pCliente, pInversionista) {
+    $.ajax({
+        type: "POST",
+        url: "clientes.aspx/llenarInversionistas", // Cambia por el nombre de tu página
+        data: JSON.stringify({ pCliente: pCliente }),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var dropdown = document.getElementById("cmbInversionista");
+            dropdown.innerHTML = "";
+
+            response.d.forEach(function (item) {
+                var option = document.createElement("option");
+                option.value = item.Value; 
+                option.text = item.Text;  // Asigna el texto de la opción
+
+                if (pInversionista != 0 && item.Value == pInversionista) {
+                    option.selected = true;
+                    matchFound = true;
+                }
+
+                dropdown.appendChild(option);
+
+            });
+
+        },
+        error: function (xhr, status, error) {
+            console.error("Error llenando el dropdown:", error);
+        }
+    });
+}
+
+function llenarClientes(pCliente, pInversionista) {
+    $.ajax({
+        type: "POST",
+        url: "clientes.aspx/llenarClientes", // Cambia por el nombre de tu página
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var dropdown = document.getElementById("cmbCliente");
+            dropdown.innerHTML = ""; // Limpia el DropDownList
+            let matchFound = false;
+
+            // Agrega las opciones retornadas por el backend
+            response.d.forEach(function (item, index) {
+                var option = document.createElement("option");
+                option.value = item.Value; // Asigna el valor de la opción
+                option.text = item.Text;  // Asigna el texto de la opción
+
+                // Si pCliente es diferente de 0 y coincide con item.Value, lo preselecciona
+                if (pCliente != 0 && item.Value == pCliente) {
+                    option.selected = true;
+                    matchFound = true;
+                }
+
+                dropdown.appendChild(option);
+            });
+
+        },
+        error: function (xhr, status, error) {
+            console.error("Error llenando el dropdown:", error);
+        }
+    });
+}
+
+
+function llenarEvento(pEvento) {
+    $.ajax({
+        type: "POST",
+        url: "clientes.aspx/llenarEvento",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (response) {
+            var dropdown = document.getElementById("cmbEventos");
+            dropdown.innerHTML = "";
+            let matchFound = false;
+
+            response.d.forEach(function (item) {
+                console.log("item.Value: ", item.Value + " y pEvento: " + pEvento);
+                var option = document.createElement("option");
+                option.value = item.Value;
+                option.text = item.Text;
+
+                if (pEvento != 0 && item.Value == pEvento) {
+                    option.selected = true;
+                    matchFound = true;
+                }
+
+                dropdown.appendChild(option);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error llenando el dropdown:", error);
+        }
+    });
+}
