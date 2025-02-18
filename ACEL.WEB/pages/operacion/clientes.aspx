@@ -493,7 +493,7 @@
                                                 </li>
                                             </ol>
                                         </nav>
-                                                                                <input type="text" id="hfidRegister" name="hfidRegister" value="0">
+                                        <input type="hidden" id="hfidRegister" name="hfidRegister" value="0">
 
                                     </div>
                                     <asp:Panel ID="panConsulta" runat="server" CssClass="row" style="display: block;">
@@ -504,8 +504,6 @@
                                             <label class="d-flex justify-content-start mb-0">
                                                 <select id="sortingField" class="form-select">
                                                     <option value="">Todos</option>
-                                                    <option value="F11">Evento F11</option>
-                                                    <option value="F10">Evento F10</option>
                                                 </select>
                                             </label>
                                             <button type="button" onclick="filterClientes()" id="btnFiltrar" class="btn btn-info btn-sm">Filtrar</button>
@@ -754,8 +752,8 @@
                                                                                     <th>Status Pago</th>
                                                                                 </tr>
                                                                             </thead>
-                                                                            <tbody>
-                                                                                <asp:Repeater runat="server" ID="rptPagos">
+                                                                            <tbody id="tbodyPagos">
+                                                                                <!-- <asp:Repeater runat="server" ID="rptPagos">
                                                                                     <ItemTemplate>
                                                                                         <tr>
                                                                                             <td><%# Eval("Descripcion") %></td>
@@ -765,36 +763,7 @@
                                                                                                 <label class="badge badge-danger"><%# Eval("Status") %></label></td>
                                                                                         </tr>
                                                                                     </ItemTemplate>
-                                                                                </asp:Repeater>
-                                                                                
-                                                                                <%--<tr>
-                                                                                    <td>Messsy</td>
-                                                                                    <td>Flash</td>
-                                                                                    <td class="text-danger">21.06% <i class="mdi mdi-arrow-down"></i></td>
-                                                                                    <td>
-                                                                                        <label class="badge badge-warning">In progress</label></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>John</td>
-                                                                                    <td>Premier</td>
-                                                                                    <td class="text-danger">35.00% <i class="mdi mdi-arrow-down"></i></td>
-                                                                                    <td>
-                                                                                        <label class="badge badge-info">Fixed</label></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>Peter</td>
-                                                                                    <td>After effects</td>
-                                                                                    <td class="text-success">82.00% <i class="mdi mdi-arrow-up"></i></td>
-                                                                                    <td>
-                                                                                        <label class="badge badge-success">Completed</label></td>
-                                                                                </tr>
-                                                                                <tr>
-                                                                                    <td>Dave</td>
-                                                                                    <td>53275535</td>
-                                                                                    <td class="text-success">98.05% <i class="mdi mdi-arrow-up"></i></td>
-                                                                                    <td>
-                                                                                        <label class="badge badge-warning">In progress</label></td>
-                                                                                </tr>--%>
+                                                                                </asp:Repeater> -->
                                                                             </tbody>
                                                                         </table>
                                                                     </div>

@@ -14,9 +14,16 @@ using ACEL.BO.bo;
 using System.Web.Script.Serialization;
 using static Microsoft.IO.RecyclableMemoryStreamManager;
 using System.Configuration;
+using Newtonsoft.Json;
 
 namespace ACEL.WEB.pages.operacion
 {
+    public class ResultadoOperacion
+    {
+        public bool Exito { get; set; }
+        public string Mensaje { get; set; }
+    }
+
     public partial class clientes : System.Web.UI.Page//cambio 1
     {
         #region --> Atributos <--------------------------
@@ -228,7 +235,7 @@ namespace ACEL.WEB.pages.operacion
 
             dtPagos_VS = dtPagos;
         }
-        private void LlenarTablaPagos(long pidInversionista, ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiEscala)
+        private void LlenarTablaPagos2(long pidInversionista, ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiEscala)
         {
             DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
             dtPagos.Clear();
@@ -507,7 +514,7 @@ namespace ACEL.WEB.pages.operacion
             //txtFecha2.Text = DateTime.Now.ToShortDateString();
             //cmbTipoBus.SelectedIndex = 0;
         }
-        private void CargaTotalPagos(ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiCert, long pCertificados)
+        private void CargaTotalPagos2(ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiCert, long pCertificados)
         {
             //decimal Total = (peiCert.ValorNominal.Value * pCertificados);
             //decimal Anticipo = peiCert.Aticipo.Value;
@@ -676,7 +683,9 @@ namespace ACEL.WEB.pages.operacion
             // Aplicar filtro de Evento
             if (!string.IsNullOrEmpty(criterio))
             {
-                inversionistas = inversionistas.Where(x => x["Evento"].ToString().Contains(criterio)).ToList();
+                inversionistas = inversionistas.Where(x => x["Evento"].ToString().ToUpper() == criterio.ToUpper()).ToList();
+            } else {
+                inversionistas = inversionistas.ToList();
             }
 
             // Aplicar ordenación
@@ -695,7 +704,7 @@ namespace ACEL.WEB.pages.operacion
 
         [System.Web.Script.Services.ScriptMethod()]
         [System.Web.Services.WebMethod()]
-        public static bool GuardarInversionista(string pidRegistro, string pNom, string pCliente, string pCorreo, string pTelefono, string pCertificado, string pidInversionista, string pInversionista, string pidEventos, string pEventos, string pTipoPago, string pCveUsuario)
+        public static ResultadoOperacion GuardarInversionista(string pidRegistro, string pNom, string pCliente, string pCorreo, string pTelefono, string pCertificado, string pidInversionista, string pInversionista, string pidEventos, string pEventos, string pTipoPago, string pCveUsuario)
         {
             bool flagStatus = false;
             DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
@@ -772,7 +781,7 @@ namespace ACEL.WEB.pages.operacion
                 pTipoEscala, pInversionista);
             if (eiEscala == null)
             {
-                return false; //Error al buscar la escala
+                return new ResultadoOperacion { Exito = false, Mensaje = "Operación no exitosa" };
             }
 
             if (pidRegistro == "0")
@@ -822,7 +831,7 @@ namespace ACEL.WEB.pages.operacion
                 }
             }
 
-            return flagStatus;
+            return new ResultadoOperacion { Exito = flagStatus, Mensaje = "Operación exitosa" };
         }
 
         [System.Web.Script.Services.ScriptMethod()]
@@ -873,6 +882,7 @@ namespace ACEL.WEB.pages.operacion
                     pagos = pagos,
                     cliente = inversionista.Cliente,
                     tipoPago = inversionista.CondicionesPago,
+                    escala = inversionista.idEscala,
                 };
 
                 Console.WriteLine("Estado de cuenta generado correctamente:", datos); // DEBUG
@@ -993,7 +1003,165 @@ namespace ACEL.WEB.pages.operacion
             return eventos;
         }
 
+        [System.Web.Script.Services.ScriptMethod()]
+        [System.Web.Services.WebMethod()]
+        public static string CargaTotalPagos(long idEvento, string cmbInversionista, string CondicionesPago, long pCertificados, long pidInversionista)
+        {
+            string pTipoEscala;
+            string tipoPago = CondicionesPago;
+            if (pCertificados >= 1 && pCertificados <= 9)
+            {
+                pTipoEscala = "1-9 CONTADO";
+            }
+            else if (pCertificados == 10)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "10 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "10 MENSUALIDADES";
+                }
+            }
+            else if (pCertificados >= 11 && pCertificados <= 39)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "11-39 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "11-39 MENSUALIDADES";
+                }
+            }
+            else if (pCertificados == 40)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "40 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "40 MENSUALIDADES";
+                }
+            }
+            else if (pCertificados >= 41 && pCertificados <= 99)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "41-99 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "41-99 MENSUALIDADES";
+                }
+            }
+            else if (pCertificados >= 100)
+            {
+                if (tipoPago == "CONTADO")
+                {
+                    pTipoEscala = "+ de 100 CONTADO";
+                }
+                else
+                {
+                    pTipoEscala = "+ de 100 MENSUALIDADES";
+                }
+            }
+            else
+                pTipoEscala = "";
+            ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiCert = new ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS();
+            peiCert = new boACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS().BuscartTipoInversionista(1, 1, idEvento, cmbInversionista, pTipoEscala, CondicionesPago);
+            // Crear el diccionario para almacenar los resultados
+            Dictionary<string, string> resultado = new Dictionary<string, string>();
+
+            decimal Total = peiCert.ValorNominal.HasValue ? (peiCert.ValorNominal.Value * pCertificados) : 0;
+            decimal Anticipo = peiCert.Aticipo.HasValue ? peiCert.Aticipo.Value : 0;
+            decimal Enganche;
+
+            // Calcular Enganche
+            if (peiCert.TipoPago == "MENSUALIDADES")
+                Enganche = Total * decimal.Parse("0." + peiCert.EngancheLiquidacion.Value.ToString("N0"));
+            else
+                Enganche = Total - Anticipo;
+
+            // Agregar al diccionario los valores calculados
+            resultado.Add("Total", Total.ToString("N2"));
+            resultado.Add("Anticipo", Anticipo.ToString("N2"));
+            resultado.Add("Enganche", Enganche.ToString("N2"));
+
+            if (peiCert.TipoPago == "MENSUALIDADES")
+            {
+                try
+                {
+                    string pagos = peiCert.Mensualidad.Value.ToString("N0") + " PAGOS DE $" +
+                        ((Total - Enganche) / peiCert.Mensualidad.Value).ToString("N2");
+                    resultado.Add("Pagos", pagos);
+                }
+                catch
+                {
+                    resultado.Add("Pagos", "0.00");
+                }
+            }
+            else
+            {
+                resultado.Add("Pagos", "1 PAGO DE $" + Enganche.ToString("N2"));
+            }
+
+            //CreaTablaPagos();
+            string tableHTML = LlenarTablaPagosHTML(pidInversionista, peiCert);
+            resultado.Add("tableHTML", tableHTML);
+
+            // Convertir el diccionario a JSON
+            return JsonConvert.SerializeObject(resultado);
+        }
+
+        public static string LlenarTablaPagosHTML(long pidInversionista, ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS peiEscala)
+        {
+            DateTime currentDateTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.FindSystemTimeZoneById("Central Standard Time (Mexico)"));
+
+            ACEL_CUENTA_INVERSIONISTAS eiInv = new boACEL_CUENTA_INVERSIONISTAS().Buscarid(1, 1, pidInversionista);
+            ACEL_CUENTA_EVENTOS_ESCALAS_CERTIFICADOS eiEscala = peiEscala;
+
+            decimal total = eiEscala.ValorNominal.Value * eiInv.CantidadCertificados.Value;
+            decimal anticipo = eiEscala.Aticipo.Value;
+            decimal enganche = total * decimal.Parse("0." + eiEscala.EngancheLiquidacion.Value.ToString("N0"));
+
+            var pagos = new List<(string Descripcion, string Fecha, string Monto, string Status)>();
+
+            pagos.Add(("Anticipo", currentDateTime.AddDays(3).ToShortDateString(), anticipo.ToString("N2"), "PENDIENTE"));
+
+            pagos.Add((eiEscala.TipoPago == "MENSUALIDADES" ? "Enganche" : "Liquidación",
+                       currentDateTime.AddDays(10).ToShortDateString(),
+                       enganche.ToString("N2"),
+                       "PENDIENTE"));
+
+            for (int i = 0; i < eiEscala.Mensualidad.Value; i++)
+            {
+                currentDateTime = currentDateTime.AddMonths(1);
+                pagos.Add(($"Pago mensualidad {i + 1} de {eiEscala.Mensualidad.Value}",
+                           currentDateTime.ToShortDateString(),
+                           ((total - enganche) / eiEscala.Mensualidad.Value).ToString("N2"),
+                           "PENDIENTE"));
+            }
+
+            StringBuilder htmlTable = new StringBuilder();
+            htmlTable.Append("<tbody>");
+
+            foreach (var pago in pagos)
+            {
+                htmlTable.AppendFormat(
+                    "<tr>" +
+                    "<td>{0}</td>" +
+                    "<td>{1}</td>" +
+                    "<td class='text-danger'>{2}<i class='mdi mdi-arrow-down'></i></td>" +
+                    "<td><label class='badge badge-danger'>{3}</label></td>" +
+                    "</tr>", pago.Descripcion, pago.Fecha, pago.Monto, pago.Status);
+            }
+
+            htmlTable.Append("</tbody></table>");
+
+            return htmlTable.ToString();
+        }
     }
-
-
 }
